@@ -1,0 +1,38 @@
+
+body {
+  font-size: 16px;
+}
+
+.contenido {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.usuarios {
+  border: 1px solid black;
+  width: 9.5%;
+}
+
+.calendario {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  width: 89.5%;
+}
+  .calendario__dia {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+  }
+  .calendario__label {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin: 0.5em 0em;
+    text-align: center;
+  }
+  .calendario__bloque {
+    border: 1px dotted orange;
+    height: 95px;
+    width: 100%;
+  }
