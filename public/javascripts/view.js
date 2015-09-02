@@ -1,9 +1,17 @@
+var arregloDias = [
+  'Lunes',
+  'Martes',
+  'Miércoles',
+  'Jueves',
+  'Viernes'
+]
+
 var Vista = React.createClass({
   render: function(){
     return (
       <section className="vista">
         <Usuarios />
-        <Calendario />
+        <Calendario dias={this.props.dias}/>
       </section>
     );
   }
@@ -11,13 +19,15 @@ var Vista = React.createClass({
 
 var Calendario = React.createClass({
   render: function() {
+    var dias = this.props.dias.map(function(d){
+      return (
+        <CalendarioDia name={d} />
+      )
+    });
+
     return (
       <section className="calendario">
-        <CalendarioDia name="Lunes" />
-        <CalendarioDia name="Martes" />
-        <CalendarioDia name="Miércoles" />
-        <CalendarioDia name="Jueves" />
-        <CalendarioDia name="Viernes" />
+        {dias}
       </section>
     );
   }
@@ -40,9 +50,18 @@ var CalendarioDia = React.createClass({
 });
 
 var CalendarioBloque = React.createClass({
+  getInitialState: function(){
+    return {value:0};
+  },
+  aumentar: function(e) {
+    var temp = this.state.value + 1;
+    this.setState({value: temp});
+    console.log(temp);
+  },
   render: function(){
     return (
-      <div className="calendario__bloque">
+      <div className="calendario__bloque" onClick={this.aumentar}>
+        {this.state.value}
       </div>
     );
   }
@@ -67,4 +86,4 @@ var Usuarios = React.createClass({
   }
 });
 
-React.render(<Vista />, document.getElementById('contenido'));
+React.render(<Vista dias={arregloDias}/>, document.getElementById('contenido'));
