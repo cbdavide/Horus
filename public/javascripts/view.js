@@ -51,16 +51,20 @@ var CalendarioDia = React.createClass({
 
 var CalendarioBloque = React.createClass({
   getInitialState: function(){
-    return {value:0};
+    return {value:0, color:{red : 255, green: 255, blue: 255}};
   },
   aumentar: function(e) {
-    var temp = this.state.value + 1;
-    this.setState({value: temp});
-    console.log(temp);
+    var temp_value = this.state.value + 1;
+    var temp_red = this.state.color.red - 20;
+    var temp_blue = this.state.color.blue - 20;
+    this.setState({value: temp_value, color:{red:temp_red,green:255,blue:temp_blue}});
   },
   render: function(){
+    var color = this.state.color.red + ',' + this.state.color.green + ',' + this.state.color.blue;
     return (
-      <div className="calendario__bloque" onClick={this.aumentar}>
+      <div className="calendario__bloque"
+           style={{'backgroundColor': 'rgb('+ color + ')'}}
+           onClick={this.aumentar}>
         {this.state.value}
       </div>
     );
