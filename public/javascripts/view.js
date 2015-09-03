@@ -65,7 +65,6 @@ var CalendarioBloque = React.createClass({
       <div className="calendario__bloque"
            style={{'backgroundColor': 'rgb('+ color + ')'}}
            onClick={this.aumentar}>
-        {this.state.value}
       </div>
     );
   }
