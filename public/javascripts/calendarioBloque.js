@@ -3,7 +3,6 @@ var app = app || {};
 
 (function(){
 
-  var index = 0;
   var COLOR = [
     '#E8F5E9',
     '#C8E6C9',
@@ -17,26 +16,27 @@ var app = app || {};
     '#1B5E20'
   ];
 
-  var aumentarIndex = function() {
-    if(index < COLOR.length)
-      return ++index;
-    else
-      return index;
-  }
-
   app.CalendarioBloque = React.createClass({
+
+    index: -1,
+    aumentarIndex: function() {
+      if(this.index < (COLOR.length - 1)){
+        this.index += 1
+      }
+      return this.index;
+    },
 
     getInitialState: function(){
       return {
         value:0,
-        color: '#FFFFFF';
+        color: '#FFFFFF'
       };
     },
 
     aumentar: function(e) {
       this.setState({
         value: this.state.value + 1,
-        color: COLOR[aumentarIndex()]
+        color: COLOR[this.aumentarIndex()]
       });
     },
 
