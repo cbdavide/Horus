@@ -19821,11 +19821,128 @@ var _componentsVista = require('./components/Vista');
 
 var _componentsVista2 = _interopRequireDefault(_componentsVista);
 
-var diass = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
+var calendario = [{
+  nombre: 'Lunes',
+  bloques: [{
+    key: '6-8',
+    counter: 2
+  }, {
+    key: '8-10',
+    counter: 0
+  }, {
+    key: '10-12',
+    counter: 0
+  }, {
+    key: '12-2',
+    counter: 0
+  }, {
+    key: '2-4',
+    counter: 10
+  }, {
+    key: '4-6',
+    counter: 2
+  }]
+}, {
+  nombre: 'Martes',
+  bloques: [{
+    key: '6-8',
+    counter: 2
+  }, {
+    key: '8-10',
+    counter: 0
+  }, {
+    key: '10-12',
+    counter: 0
+  }, {
+    key: '12-2',
+    counter: 0
+  }, {
+    key: '2-4',
+    counter: 10
+  }, {
+    key: '4-6',
+    counter: 2
+  }]
+}, {
+  nombre: 'Miercoles',
+  bloques: [{
+    key: '6-8',
+    counter: 2
+  }, {
+    key: '8-10',
+    counter: 0
+  }, {
+    key: '10-12',
+    counter: 0
+  }, {
+    key: '12-2',
+    counter: 0
+  }, {
+    key: '2-4',
+    counter: 10
+  }, {
+    key: '4-6',
+    counter: 2
+  }]
+}, {
+  nombre: 'Jueves',
+  bloques: [{
+    key: '6-8',
+    counter: 2
+  }, {
+    key: '8-10',
+    counter: 0
+  }, {
+    key: '10-12',
+    counter: 0
+  }, {
+    key: '12-2',
+    counter: 0
+  }, {
+    key: '2-4',
+    counter: 10
+  }, {
+    key: '4-6',
+    counter: 2
+  }]
+}, {
+  nombre: 'Viernes',
+  bloques: [{
+    key: '6-8',
+    counter: 2
+  }, {
+    key: '8-10',
+    counter: 0
+  }, {
+    key: '10-12',
+    counter: 0
+  }, {
+    key: '12-2',
+    counter: 0
+  }, {
+    key: '2-4',
+    counter: 10
+  }, {
+    key: '4-6',
+    counter: 2
+  }]
+}];
+
+var dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
+
+var bloque = {
+  key: '6-8',
+  counter: 10
+};
 
 var colors = ['#E8F5E9', '#C8E6C9', '#A5D6A7', '#81C784', '#66BB6A', '#4CAF50', '#43A047', '#388E3C', '#2E7D32', '#1B5E20'];
 
-_react2['default'].render(_react2['default'].createElement(_componentsVista2['default'], { dias: diass, colores: colors }), document.getElementById('contenido'));
+_react2['default'].render(_react2['default'].createElement(_componentsVista2['default'], { dias: calendario, colores: colors }), document.getElementById('contenido'));
+setTimeout(function () {
+  calendario[0].bloques[2].counter = 6;
+  _react2['default'].render(_react2['default'].createElement(_componentsVista2['default'], { dias: calendario, colores: colors }), document.getElementById('contenido'));
+  console.log('Listo mofo');
+}, 3000);
 
 },{"./components/Vista":163,"react":156}],158:[function(require,module,exports){
 'use strict';
@@ -19851,7 +19968,7 @@ var Calendario = _react2['default'].createClass({
 
     var colores = this.props.colores;
     var dias = this.props.dias.map(function (dia) {
-      return _react2['default'].createElement(_CalendarioDia2['default'], { name: dia, colores: colores });
+      return _react2['default'].createElement(_CalendarioDia2['default'], { name: dia.nombre, bloques: dia.bloques, colores: colores });
     });
 
     return _react2['default'].createElement(
@@ -19909,9 +20026,18 @@ var CalendarioBloque = _react2['default'].createClass({
     });
   },
 
+  establecerColor: function establecerColor(num) {
+    if (num < this.props.colores.length - 1) {
+      return num;
+    } else {
+      return this.props.colores.length - 1;
+    }
+  },
+
   render: function render() {
+    var color = this.props.colores[this.establecerColor(this.props.counter)];
     return _react2['default'].createElement('div', { className: 'calendario__bloque',
-      style: { 'backgroundColor': this.state.color },
+      style: { 'backgroundColor': color },
       onClick: this.aumentar });
   }
 });
@@ -19944,16 +20070,20 @@ var CalendarioDia = _react2['default'].createClass({
   displayName: 'CalendarioDia',
 
   render: function render() {
+
+    var colores = this.props.colores;
+    var bloques = this.props.bloques.map(function (bloque) {
+      return _react2['default'].createElement(_CalendarioBloque2['default'], {
+        key: bloque.key,
+        counter: bloque.counter,
+        colores: colores });
+    });
+
     return _react2['default'].createElement(
       'section',
       { className: 'calendario__dia' },
       _react2['default'].createElement(_CalendarioLabel2['default'], { text: this.props.name }),
-      _react2['default'].createElement(_CalendarioBloque2['default'], { colores: this.props.colores }),
-      _react2['default'].createElement(_CalendarioBloque2['default'], { colores: this.props.colores }),
-      _react2['default'].createElement(_CalendarioBloque2['default'], { colores: this.props.colores }),
-      _react2['default'].createElement(_CalendarioBloque2['default'], { colores: this.props.colores }),
-      _react2['default'].createElement(_CalendarioBloque2['default'], { colores: this.props.colores }),
-      _react2['default'].createElement(_CalendarioBloque2['default'], { colores: this.props.colores })
+      bloques
     );
   }
 });

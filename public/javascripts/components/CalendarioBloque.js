@@ -31,10 +31,19 @@ import React from 'react';
       });
     },
 
+    establecerColor: function(num) {
+      if(num < (this.props.colores.length - 1)){
+        return num;
+      }else {
+        return (this.props.colores.length - 1);
+      }
+    },
+
     render: function(){
+      var color = this.props.colores[this.establecerColor(this.props.counter)];
       return (
         <div className="calendario__bloque"
-             style={{'backgroundColor': this.state.color}}
+             style={{'backgroundColor': color}}
              onClick={this.aumentar}>
         </div>
       );
