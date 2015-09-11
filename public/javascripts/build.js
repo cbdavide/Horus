@@ -19821,130 +19821,20 @@ var _componentsVista = require('./components/Vista');
 
 var _componentsVista2 = _interopRequireDefault(_componentsVista);
 
-var calendario = [{
-  nombre: 'Lunes',
-  bloques: [{
-    key: '6-8',
-    counter: 2
-  }, {
-    key: '8-10',
-    counter: 0
-  }, {
-    key: '10-12',
-    counter: 0
-  }, {
-    key: '12-2',
-    counter: 0
-  }, {
-    key: '2-4',
-    counter: 10
-  }, {
-    key: '4-6',
-    counter: 2
-  }]
-}, {
-  nombre: 'Martes',
-  bloques: [{
-    key: '6-8',
-    counter: 2
-  }, {
-    key: '8-10',
-    counter: 0
-  }, {
-    key: '10-12',
-    counter: 0
-  }, {
-    key: '12-2',
-    counter: 0
-  }, {
-    key: '2-4',
-    counter: 10
-  }, {
-    key: '4-6',
-    counter: 2
-  }]
-}, {
-  nombre: 'Miercoles',
-  bloques: [{
-    key: '6-8',
-    counter: 2
-  }, {
-    key: '8-10',
-    counter: 0
-  }, {
-    key: '10-12',
-    counter: 0
-  }, {
-    key: '12-2',
-    counter: 0
-  }, {
-    key: '2-4',
-    counter: 10
-  }, {
-    key: '4-6',
-    counter: 2
-  }]
-}, {
-  nombre: 'Jueves',
-  bloques: [{
-    key: '6-8',
-    counter: 2
-  }, {
-    key: '8-10',
-    counter: 0
-  }, {
-    key: '10-12',
-    counter: 0
-  }, {
-    key: '12-2',
-    counter: 0
-  }, {
-    key: '2-4',
-    counter: 10
-  }, {
-    key: '4-6',
-    counter: 2
-  }]
-}, {
-  nombre: 'Viernes',
-  bloques: [{
-    key: '6-8',
-    counter: 2
-  }, {
-    key: '8-10',
-    counter: 0
-  }, {
-    key: '10-12',
-    counter: 0
-  }, {
-    key: '12-2',
-    counter: 0
-  }, {
-    key: '2-4',
-    counter: 10
-  }, {
-    key: '4-6',
-    counter: 2
-  }]
-}];
+var colors = ['#FFFFFF', '#E8F5E9', '#C8E6C9', '#A5D6A7', '#81C784', '#66BB6A', '#4CAF50', '#43A047', '#388E3C', '#2E7D32', '#1B5E20'];
 
-var dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
+_react2['default'].render(_react2['default'].createElement(_componentsVista2['default'], { colores: colors }), document.getElementById('contenido'));
 
-var bloque = {
-  key: '6-8',
-  counter: 10
-};
+// setTimeout(function(){
+//   calendario[0].bloques[2].counter = 6;
+//   React.render(
+//     <Vista dias={calendario} colores={colors}/>,
+//     document.getElementById('contenido')
+//   );
+//   console.log('Listo mofo')
+// },3000);
 
-var colors = ['#E8F5E9', '#C8E6C9', '#A5D6A7', '#81C784', '#66BB6A', '#4CAF50', '#43A047', '#388E3C', '#2E7D32', '#1B5E20'];
-
-_react2['default'].render(_react2['default'].createElement(_componentsVista2['default'], { dias: calendario, colores: colors }), document.getElementById('contenido'));
-setTimeout(function () {
-  calendario[0].bloques[2].counter = 6;
-  _react2['default'].render(_react2['default'].createElement(_componentsVista2['default'], { dias: calendario, colores: colors }), document.getElementById('contenido'));
-  console.log('Listo mofo');
-}, 3000);
-
-},{"./components/Vista":163,"react":156}],158:[function(require,module,exports){
+},{"./components/Vista":167,"react":156}],158:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -20091,7 +19981,37 @@ var CalendarioDia = _react2['default'].createClass({
 exports['default'] = CalendarioDia;
 module.exports = exports['default'];
 
-},{"./CalendarioBloque":159,"./CalendarioLabel":161,"react":156}],161:[function(require,module,exports){
+},{"./CalendarioBloque":159,"./CalendarioLabel":162,"react":156}],161:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var CalendarioItem = _react2["default"].createClass({
+  displayName: "CalendarioItem",
+
+  render: function render() {
+
+    return _react2["default"].createElement(
+      "li",
+      { className: "panelUsuario__listaCalendarios__item" },
+      this.props.nombre
+    );
+  }
+
+});
+
+exports["default"] = CalendarioItem;
+module.exports = exports["default"];
+
+},{"react":156}],162:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -20119,7 +20039,123 @@ var CalendarioLabel = _react2["default"].createClass({
 exports["default"] = CalendarioLabel;
 module.exports = exports["default"];
 
-},{"react":156}],162:[function(require,module,exports){
+},{"react":156}],163:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var InformacionPersonal = _react2["default"].createClass({
+  displayName: "InformacionPersonal",
+
+  render: function render() {
+
+    return _react2["default"].createElement(
+      "div",
+      { className: "panelUsuario__informacion" },
+      _react2["default"].createElement(
+        "figure",
+        { className: "panelUsuario__avatar" },
+        _react2["default"].createElement("img", { src: this.props.avatar })
+      ),
+      _react2["default"].createElement(
+        "span",
+        { className: "panelUsuario__label" },
+        this.props.nombre
+      )
+    );
+  }
+
+});
+
+exports["default"] = InformacionPersonal;
+module.exports = exports["default"];
+
+},{"react":156}],164:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _CalendarioItem = require('./CalendarioItem');
+
+var _CalendarioItem2 = _interopRequireDefault(_CalendarioItem);
+
+var ListaCalendarios = _react2['default'].createClass({
+  displayName: 'ListaCalendarios',
+
+  render: function render() {
+
+    return _react2['default'].createElement(
+      'ul',
+      { className: 'panelUsuario__listaCalendarios' },
+      _react2['default'].createElement(_CalendarioItem2['default'], { nombre: 'Grupo de trabajo' }),
+      _react2['default'].createElement(_CalendarioItem2['default'], { nombre: 'Estudiar cálculo' })
+    );
+  }
+
+});
+
+exports['default'] = ListaCalendarios;
+module.exports = exports['default'];
+
+},{"./CalendarioItem":161,"react":156}],165:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _InformacionPersonal = require('./InformacionPersonal');
+
+var _InformacionPersonal2 = _interopRequireDefault(_InformacionPersonal);
+
+var _ListaCalendarios = require('./ListaCalendarios');
+
+var _ListaCalendarios2 = _interopRequireDefault(_ListaCalendarios);
+
+var PanelUsuario = _react2['default'].createClass({
+  displayName: 'PanelUsuario',
+
+  render: function render() {
+
+    return _react2['default'].createElement(
+      'div',
+      { className: 'panelUsuario' },
+      _react2['default'].createElement(_InformacionPersonal2['default'], {
+        avatar: 'https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-xft1/v/t1.0-9/10404085_944502215582948_7976228266989840397_n.jpg?oh=0c7faee63d737e5dbdd58e6a518ad830&oe=566CF784&__gda__=1453396494_79146a348e2dd73c95a10db3593425a5',
+        nombre: 'David'
+      }),
+      _react2['default'].createElement(_ListaCalendarios2['default'], null)
+    );
+  }
+
+});
+
+exports['default'] = PanelUsuario;
+module.exports = exports['default'];
+
+},{"./InformacionPersonal":163,"./ListaCalendarios":164,"react":156}],166:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -20143,7 +20179,7 @@ var Usuarios = _react2["default"].createClass({
 exports["default"] = Usuarios;
 module.exports = exports["default"];
 
-},{"react":156}],163:[function(require,module,exports){
+},{"react":156}],167:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -20164,15 +20200,131 @@ var _Usuarios = require('./Usuarios');
 
 var _Usuarios2 = _interopRequireDefault(_Usuarios);
 
+var _PanelUsuario = require('./PanelUsuario');
+
+var _PanelUsuario2 = _interopRequireDefault(_PanelUsuario);
+
 var Vista = _react2['default'].createClass({
   displayName: 'Vista',
+
+  getInitialState: function getInitialState() {
+    return {
+      calendario: [{
+        nombre: 'Lunes',
+        bloques: [{
+          key: '6-8',
+          counter: 0
+        }, {
+          key: '8-10',
+          counter: 0
+        }, {
+          key: '10-12',
+          counter: 0
+        }, {
+          key: '12-2',
+          counter: 0
+        }, {
+          key: '2-4',
+          counter: 0
+        }, {
+          key: '4-6',
+          counter: 0
+        }]
+      }, {
+        nombre: 'Martes',
+        bloques: [{
+          key: '6-8',
+          counter: 0
+        }, {
+          key: '8-10',
+          counter: 0
+        }, {
+          key: '10-12',
+          counter: 0
+        }, {
+          key: '12-2',
+          counter: 0
+        }, {
+          key: '2-4',
+          counter: 0
+        }, {
+          key: '4-6',
+          counter: 0
+        }]
+      }, {
+        nombre: 'Miercoles',
+        bloques: [{
+          key: '6-8',
+          counter: 0
+        }, {
+          key: '8-10',
+          counter: 0
+        }, {
+          key: '10-12',
+          counter: 0
+        }, {
+          key: '12-2',
+          counter: 0
+        }, {
+          key: '2-4',
+          counter: 0
+        }, {
+          key: '4-6',
+          counter: 0
+        }]
+      }, {
+        nombre: 'Jueves',
+        bloques: [{
+          key: '6-8',
+          counter: 0
+        }, {
+          key: '8-10',
+          counter: 0
+        }, {
+          key: '10-12',
+          counter: 0
+        }, {
+          key: '12-2',
+          counter: 0
+        }, {
+          key: '2-4',
+          counter: 0
+        }, {
+          key: '4-6',
+          counter: 0
+        }]
+      }, {
+        nombre: 'Viernes',
+        bloques: [{
+          key: '6-8',
+          counter: 0
+        }, {
+          key: '8-10',
+          counter: 0
+        }, {
+          key: '10-12',
+          counter: 0
+        }, {
+          key: '12-2',
+          counter: 0
+        }, {
+          key: '2-4',
+          counter: 0
+        }, {
+          key: '4-6',
+          counter: 0
+        }]
+      }]
+    };
+  },
 
   render: function render() {
     return _react2['default'].createElement(
       'section',
       { className: 'vista' },
+      _react2['default'].createElement(_PanelUsuario2['default'], null),
       _react2['default'].createElement(_Usuarios2['default'], null),
-      _react2['default'].createElement(_Calendario2['default'], { dias: this.props.dias, colores: this.props.colores })
+      _react2['default'].createElement(_Calendario2['default'], { dias: this.state.calendario, colores: this.props.colores })
     );
   }
 });
@@ -20180,4 +20332,4 @@ var Vista = _react2['default'].createClass({
 exports['default'] = Vista;
 module.exports = exports['default'];
 
-},{"./Calendario":158,"./Usuarios":162,"react":156}]},{},[157]);
+},{"./Calendario":158,"./PanelUsuario":165,"./Usuarios":166,"react":156}]},{},[157]);
