@@ -1,5 +1,5 @@
 
-import React from 'react';
+var React = require('react');
 
  var CalendarioBloque = React.createClass({
 
@@ -50,4 +50,4 @@ import React from 'react';
     }
   });
 
-  export default CalendarioBloque;
+  module.exports = CalendarioBloque;

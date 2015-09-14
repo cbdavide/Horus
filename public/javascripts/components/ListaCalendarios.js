@@ -1,6 +1,6 @@
 
-import React from 'react';
-import CalendarioItem from './CalendarioItem'
+var React = require('react');
+var CalendarioItem = require('./CalendarioItem');
 
 var ListaCalendarios = React.createClass({
 
@@ -16,4 +16,4 @@ var ListaCalendarios = React.createClass({
 
 });
 
-export default ListaCalendarios;
+module.exports = ListaCalendarios;

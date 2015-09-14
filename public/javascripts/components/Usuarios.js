@@ -1,5 +1,5 @@
 
-import React from 'react';
+var React = require('react');
 
 var Usuarios = React.createClass({
   render: function() {
@@ -10,4 +10,4 @@ var Usuarios = React.createClass({
   }
 });
 
-export default Usuarios;
+module.exports = Usuarios;

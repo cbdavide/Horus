@@ -1,7 +1,7 @@
 
-import React from 'react';
-import InformacionPersonal from './InformacionPersonal';
-import ListaCalendarios from './ListaCalendarios'
+var React = require('react');
+var InformacionPersonal = require('./InformacionPersonal');
+var ListaCalendarios = require('./ListaCalendarios');
 
 
 var PanelUsuario = React.createClass({
@@ -24,4 +24,4 @@ var PanelUsuario = React.createClass({
 
 });
 
-export default PanelUsuario;
+module.exports = PanelUsuario;

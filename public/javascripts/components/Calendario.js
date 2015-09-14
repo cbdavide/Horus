@@ -1,6 +1,6 @@
 
-import React from 'react';
-import CalendarioDia from './CalendarioDia';
+var React = require('react');
+var CalendarioDia = require('./CalendarioDia')
 
 var Calendario = React.createClass({
   render: function() {
@@ -20,4 +20,4 @@ var Calendario = React.createClass({
   }
 });
 
-export default Calendario;
+module.exports = Calendario;

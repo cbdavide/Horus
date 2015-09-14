@@ -1,7 +1,7 @@
 
-import React from 'react';
-import CalendarioLabel from './CalendarioLabel';
-import CalendarioBloque from './CalendarioBloque';
+var React = require('react');
+var CalendarioBloque = require('./CalendarioBloque');
+var CalendarioLabel = require('./CalendarioLabel');
 
 var CalendarioDia = React.createClass({
 
@@ -16,7 +16,7 @@ var CalendarioDia = React.createClass({
           colores={colores} />
       );
     });
-    
+
     return (
       <section className="calendario__dia">
         <CalendarioLabel text={this.props.name} />
@@ -26,4 +26,4 @@ var CalendarioDia = React.createClass({
   }
 });
 
-export default CalendarioDia;
+module.exports = CalendarioDia;

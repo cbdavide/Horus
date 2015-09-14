@@ -1,5 +1,5 @@
 
-import React from 'react';
+var React = require('react');
 
 var CalendarioItem = React.createClass({
 
@@ -14,4 +14,4 @@ var CalendarioItem = React.createClass({
 
 });
 
-export default CalendarioItem;
+module.exports =  CalendarioItem;

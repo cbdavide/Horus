@@ -1,6 +1,6 @@
 
-import React from 'react';
-import Vista from './components/Vista';
+var React = require('react');
+var Vista = require('./components/Vista');
 
 var colors = [
   '#FFFFFF',

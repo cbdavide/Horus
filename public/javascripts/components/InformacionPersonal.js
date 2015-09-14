@@ -1,5 +1,4 @@
-
-import React from 'react';
+var React = require('react');
 
 var InformacionPersonal = React.createClass({
 
@@ -23,4 +22,4 @@ var InformacionPersonal = React.createClass({
 
 });
 
-export default InformacionPersonal;
+module.exports = InformacionPersonal;

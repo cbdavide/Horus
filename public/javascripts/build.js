@@ -19811,19 +19811,12 @@ module.exports = require('./lib/React');
 },{"./lib/React":29}],157:[function(require,module,exports){
 'use strict';
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _componentsVista = require('./components/Vista');
-
-var _componentsVista2 = _interopRequireDefault(_componentsVista);
+var React = require('react');
+var Vista = require('./components/Vista');
 
 var colors = ['#FFFFFF', '#E8F5E9', '#C8E6C9', '#A5D6A7', '#81C784', '#66BB6A', '#4CAF50', '#43A047', '#388E3C', '#2E7D32', '#1B5E20'];
 
-_react2['default'].render(_react2['default'].createElement(_componentsVista2['default'], { colores: colors }), document.getElementById('contenido'));
+React.render(React.createElement(Vista, { colores: colors }), document.getElementById('contenido'));
 
 // setTimeout(function(){
 //   calendario[0].bloques[2].counter = 6;
@@ -19837,31 +19830,20 @@ _react2['default'].render(_react2['default'].createElement(_componentsVista2['de
 },{"./components/Vista":167,"react":156}],158:[function(require,module,exports){
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
+var React = require('react');
+var CalendarioDia = require('./CalendarioDia');
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _CalendarioDia = require('./CalendarioDia');
-
-var _CalendarioDia2 = _interopRequireDefault(_CalendarioDia);
-
-var Calendario = _react2['default'].createClass({
+var Calendario = React.createClass({
   displayName: 'Calendario',
 
   render: function render() {
 
     var colores = this.props.colores;
     var dias = this.props.dias.map(function (dia) {
-      return _react2['default'].createElement(_CalendarioDia2['default'], { name: dia.nombre, bloques: dia.bloques, colores: colores });
+      return React.createElement(CalendarioDia, { name: dia.nombre, bloques: dia.bloques, colores: colores });
     });
 
-    return _react2['default'].createElement(
+    return React.createElement(
       'section',
       { className: 'calendario' },
       dias
@@ -19869,23 +19851,14 @@ var Calendario = _react2['default'].createClass({
   }
 });
 
-exports['default'] = Calendario;
-module.exports = exports['default'];
+module.exports = Calendario;
 
 },{"./CalendarioDia":160,"react":156}],159:[function(require,module,exports){
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
+var React = require('react');
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var CalendarioBloque = _react2['default'].createClass({
+var CalendarioBloque = React.createClass({
   displayName: 'CalendarioBloque',
 
   aumentarIndex: function aumentarIndex() {
@@ -19926,80 +19899,56 @@ var CalendarioBloque = _react2['default'].createClass({
 
   render: function render() {
     var color = this.props.colores[this.establecerColor(this.props.counter)];
-    return _react2['default'].createElement('div', { className: 'calendario__bloque',
+    return React.createElement('div', { className: 'calendario__bloque',
       style: { 'backgroundColor': color },
       onClick: this.aumentar });
   }
 });
 
-exports['default'] = CalendarioBloque;
-module.exports = exports['default'];
+module.exports = CalendarioBloque;
 
 },{"react":156}],160:[function(require,module,exports){
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
+var React = require('react');
+var CalendarioBloque = require('./CalendarioBloque');
+var CalendarioLabel = require('./CalendarioLabel');
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _CalendarioLabel = require('./CalendarioLabel');
-
-var _CalendarioLabel2 = _interopRequireDefault(_CalendarioLabel);
-
-var _CalendarioBloque = require('./CalendarioBloque');
-
-var _CalendarioBloque2 = _interopRequireDefault(_CalendarioBloque);
-
-var CalendarioDia = _react2['default'].createClass({
+var CalendarioDia = React.createClass({
   displayName: 'CalendarioDia',
 
   render: function render() {
 
     var colores = this.props.colores;
     var bloques = this.props.bloques.map(function (bloque) {
-      return _react2['default'].createElement(_CalendarioBloque2['default'], {
+      return React.createElement(CalendarioBloque, {
         key: bloque.key,
         counter: bloque.counter,
         colores: colores });
     });
 
-    return _react2['default'].createElement(
+    return React.createElement(
       'section',
       { className: 'calendario__dia' },
-      _react2['default'].createElement(_CalendarioLabel2['default'], { text: this.props.name }),
+      React.createElement(CalendarioLabel, { text: this.props.name }),
       bloques
     );
   }
 });
 
-exports['default'] = CalendarioDia;
-module.exports = exports['default'];
+module.exports = CalendarioDia;
 
 },{"./CalendarioBloque":159,"./CalendarioLabel":162,"react":156}],161:[function(require,module,exports){
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+var React = require('react');
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var CalendarioItem = _react2["default"].createClass({
+var CalendarioItem = React.createClass({
   displayName: "CalendarioItem",
 
   render: function render() {
 
-    return _react2["default"].createElement(
+    return React.createElement(
       "li",
       { className: "panelUsuario__listaCalendarios__item" },
       this.props.nombre
@@ -20008,27 +19957,18 @@ var CalendarioItem = _react2["default"].createClass({
 
 });
 
-exports["default"] = CalendarioItem;
-module.exports = exports["default"];
+module.exports = CalendarioItem;
 
 },{"react":156}],162:[function(require,module,exports){
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+var React = require('react');
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var CalendarioLabel = _react2["default"].createClass({
+var CalendarioLabel = React.createClass({
   displayName: "CalendarioLabel",
 
   render: function render() {
-    return _react2["default"].createElement(
+    return React.createElement(
       "div",
       { className: "calendario__label" },
       this.props.text
@@ -20036,36 +19976,27 @@ var CalendarioLabel = _react2["default"].createClass({
   }
 });
 
-exports["default"] = CalendarioLabel;
-module.exports = exports["default"];
+module.exports = CalendarioLabel;
 
 },{"react":156}],163:[function(require,module,exports){
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+var React = require('react');
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var InformacionPersonal = _react2["default"].createClass({
+var InformacionPersonal = React.createClass({
   displayName: "InformacionPersonal",
 
   render: function render() {
 
-    return _react2["default"].createElement(
+    return React.createElement(
       "div",
       { className: "panelUsuario__informacion" },
-      _react2["default"].createElement(
+      React.createElement(
         "figure",
         { className: "panelUsuario__avatar" },
-        _react2["default"].createElement("img", { src: this.props.avatar })
+        React.createElement("img", { src: this.props.avatar })
       ),
-      _react2["default"].createElement(
+      React.createElement(
         "span",
         { className: "panelUsuario__label" },
         this.props.nombre
@@ -20075,136 +20006,82 @@ var InformacionPersonal = _react2["default"].createClass({
 
 });
 
-exports["default"] = InformacionPersonal;
-module.exports = exports["default"];
+module.exports = InformacionPersonal;
 
 },{"react":156}],164:[function(require,module,exports){
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
+var React = require('react');
+var CalendarioItem = require('./CalendarioItem');
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _CalendarioItem = require('./CalendarioItem');
-
-var _CalendarioItem2 = _interopRequireDefault(_CalendarioItem);
-
-var ListaCalendarios = _react2['default'].createClass({
+var ListaCalendarios = React.createClass({
   displayName: 'ListaCalendarios',
 
   render: function render() {
 
-    return _react2['default'].createElement(
+    return React.createElement(
       'ul',
       { className: 'panelUsuario__listaCalendarios' },
-      _react2['default'].createElement(_CalendarioItem2['default'], { nombre: 'Grupo de trabajo' }),
-      _react2['default'].createElement(_CalendarioItem2['default'], { nombre: 'Estudiar cálculo' })
+      React.createElement(CalendarioItem, { nombre: 'Grupo de trabajo' }),
+      React.createElement(CalendarioItem, { nombre: 'Estudiar cálculo' })
     );
   }
 
 });
 
-exports['default'] = ListaCalendarios;
-module.exports = exports['default'];
+module.exports = ListaCalendarios;
 
 },{"./CalendarioItem":161,"react":156}],165:[function(require,module,exports){
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
+var React = require('react');
+var InformacionPersonal = require('./InformacionPersonal');
+var ListaCalendarios = require('./ListaCalendarios');
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _InformacionPersonal = require('./InformacionPersonal');
-
-var _InformacionPersonal2 = _interopRequireDefault(_InformacionPersonal);
-
-var _ListaCalendarios = require('./ListaCalendarios');
-
-var _ListaCalendarios2 = _interopRequireDefault(_ListaCalendarios);
-
-var PanelUsuario = _react2['default'].createClass({
+var PanelUsuario = React.createClass({
   displayName: 'PanelUsuario',
 
   render: function render() {
 
-    return _react2['default'].createElement(
+    return React.createElement(
       'div',
       { className: 'panelUsuario' },
-      _react2['default'].createElement(_InformacionPersonal2['default'], {
+      React.createElement(InformacionPersonal, {
         avatar: 'https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-xft1/v/t1.0-9/10404085_944502215582948_7976228266989840397_n.jpg?oh=0c7faee63d737e5dbdd58e6a518ad830&oe=566CF784&__gda__=1453396494_79146a348e2dd73c95a10db3593425a5',
         nombre: 'David'
       }),
-      _react2['default'].createElement(_ListaCalendarios2['default'], null)
+      React.createElement(ListaCalendarios, null)
     );
   }
 
 });
 
-exports['default'] = PanelUsuario;
-module.exports = exports['default'];
+module.exports = PanelUsuario;
 
 },{"./InformacionPersonal":163,"./ListaCalendarios":164,"react":156}],166:[function(require,module,exports){
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+var React = require('react');
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var Usuarios = _react2["default"].createClass({
+var Usuarios = React.createClass({
   displayName: "Usuarios",
 
   render: function render() {
-    return _react2["default"].createElement("section", { className: "usuarios" });
+    return React.createElement("section", { className: "usuarios" });
   }
 });
 
-exports["default"] = Usuarios;
-module.exports = exports["default"];
+module.exports = Usuarios;
 
 },{"react":156}],167:[function(require,module,exports){
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
+var React = require('react');
+var Calendario = require('./Calendario');
+var Usuarios = require('./Usuarios');
+var PanelUsuario = require('./PanelUsuario');
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Calendario = require('./Calendario');
-
-var _Calendario2 = _interopRequireDefault(_Calendario);
-
-var _Usuarios = require('./Usuarios');
-
-var _Usuarios2 = _interopRequireDefault(_Usuarios);
-
-var _PanelUsuario = require('./PanelUsuario');
-
-var _PanelUsuario2 = _interopRequireDefault(_PanelUsuario);
-
-var Vista = _react2['default'].createClass({
+var Vista = React.createClass({
   displayName: 'Vista',
 
   getInitialState: function getInitialState() {
@@ -20319,17 +20196,16 @@ var Vista = _react2['default'].createClass({
   },
 
   render: function render() {
-    return _react2['default'].createElement(
+    return React.createElement(
       'section',
       { className: 'vista' },
-      _react2['default'].createElement(_PanelUsuario2['default'], null),
-      _react2['default'].createElement(_Usuarios2['default'], null),
-      _react2['default'].createElement(_Calendario2['default'], { dias: this.state.calendario, colores: this.props.colores })
+      React.createElement(PanelUsuario, null),
+      React.createElement(Usuarios, null),
+      React.createElement(Calendario, { dias: this.state.calendario, colores: this.props.colores })
     );
   }
 });
 
-exports['default'] = Vista;
-module.exports = exports['default'];
+module.exports = Vista;
 
 },{"./Calendario":158,"./PanelUsuario":165,"./Usuarios":166,"react":156}]},{},[157]);

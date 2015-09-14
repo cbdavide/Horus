@@ -1,5 +1,5 @@
 
-import React from 'react';
+var React = require('react')
 
 var CalendarioLabel = React.createClass({
   render: function() {
@@ -11,4 +11,4 @@ var CalendarioLabel = React.createClass({
   }
 });
 
-export default CalendarioLabel;
+module.exports = CalendarioLabel;

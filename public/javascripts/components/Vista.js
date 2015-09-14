@@ -1,8 +1,8 @@
 
-import React from 'react';
-import Calendario from './Calendario';
-import Usuarios from './Usuarios';
-import PanelUsuario from './PanelUsuario'
+var  React = require('react');
+var  Calendario = require('./Calendario');
+var  Usuarios = require('./Usuarios');
+var  PanelUsuario = require('./PanelUsuario');
 
 var Vista = React.createClass({
 
@@ -169,4 +169,4 @@ var Vista = React.createClass({
   }
 });
 
-export default Vista;
+module.exports = Vista;
