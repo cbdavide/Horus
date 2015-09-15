@@ -158,6 +158,18 @@ var Vista = React.createClass({
     };
   },
 
+  componentDidMount: function() {
+    var self = this;
+    setTimeout(function(){
+      self.setState(function(prev){
+        prev.calendario[0].bloques[0].counter = 5;
+        return {
+          calendario: prev.calendario
+        }
+      });
+    },3000,self);
+  },
+
   render: function(){
     return (
       <section className="vista">

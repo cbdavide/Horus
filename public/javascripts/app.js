@@ -20,12 +20,3 @@ React.render(
   <Vista colores={colors}/>,
   document.getElementById('contenido')
 );
-
-// setTimeout(function(){
-//   calendario[0].bloques[2].counter = 6;
-//   React.render(
-//     <Vista dias={calendario} colores={colors}/>,
-//     document.getElementById('contenido')
-//   );
-//   console.log('Listo mofo')
-// },3000);
