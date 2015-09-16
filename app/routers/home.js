@@ -1,7 +1,7 @@
 require('node-jsx').install();
 
 var React = require('react/addons');
-var View = require('../../public/javascripts/components/Vista');
+var View = require('../public/javascripts/components/Vista');
 
 var Vista = React.createFactory(View);
 

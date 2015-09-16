@@ -1,6 +1,5 @@
 
 var express = require('express');
-var path = require('path');
 var routers = require('./routers');
 
 
@@ -8,8 +7,7 @@ var expressServer = (function() {
 
   var server = express();
 
-  server.use('/', express.static(path.join(__dirname, '../public')));
-  console.log(__dirname);
+  server.use('/', express.static(__dirname + '/public'));
 
   server.set('views','./app/views');
   server.set('view engine', 'ejs');
