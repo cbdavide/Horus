@@ -9,7 +9,7 @@ var expressServer = (function() {
 
   server.use('/', express.static(__dirname + '/public'));
 
-  server.set('views','./app/views');
+  server.set('views','./app/views/templates');
   server.set('view engine', 'ejs');
 
   for(var i in routers) {

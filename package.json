@@ -9,7 +9,7 @@
     "react": "^0.13.3"
   },
   "scripts": {
-    "build": "browserify public/javascripts/app.js > public/javascripts/build.js -t babelify",
+    "build": "browserify app/views/components.js > app/public/javascripts/build.js -t babelify",
     "start": "node app.js"
   }
 }
