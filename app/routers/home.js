@@ -1,23 +1,25 @@
 require('node-jsx').install();
 
 var React = require('react/addons');
-var View = require('../views/components/Vista');
+var Main = require('../views/components');
 
-var Vista = React.createFactory(View);
+var datos = {
+  colores : [
+    '#FFFFFF',
+    '#E8F5E9',
+    '#C8E6C9',
+    '#A5D6A7',
+    '#81C784',
+    '#66BB6A',
+    '#4CAF50',
+    '#43A047',
+    '#388E3C',
+    '#2E7D32',
+    '#1B5E20'
+  ]
+};
 
-var colors = [
-  '#FFFFFF',
-  '#E8F5E9',
-  '#C8E6C9',
-  '#A5D6A7',
-  '#81C784',
-  '#66BB6A',
-  '#4CAF50',
-  '#43A047',
-  '#388E3C',
-  '#2E7D32',
-  '#1B5E20'
-];
+var vista = new Main(datos);
 
 var home = {
 
@@ -25,10 +27,9 @@ var home = {
   method: 'get',
   callback: function(req,res) {
 
-    var text = React.renderToString(Vista({colores: colors}));
-
     res.render('index',{
-      contenido : text
+      contenido : vista.render(),
+      data : JSON.stringify(datos)
     });
   }
 
