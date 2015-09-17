@@ -60,6 +60,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 1em 0.5em;
     text-align: center;
   }
 
@@ -73,6 +74,20 @@ body {
       max-width: 100px;
     }
 
-      .panelUsuario__label {
+    .panelUsuario__label {
+      border-bottom: 0.5px solid #2980b9;
+      padding-bottom: 0.5em;
+    }
 
-      }
+  .panelUsuario__listaCalendarios {
+    margin: 0em;
+    list-style: none;
+    overflow: auto;
+    padding: 0em;
+   }
+
+   .panelUsuario__listaCalendarios__item {
+     border-bottom: 0.5px solid #2980b9;
+     margin: 0.5em;
+     padding-left: 0.5em;
+   }
