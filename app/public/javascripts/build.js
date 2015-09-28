@@ -48,16 +48,28 @@ var Calendario = React.createClass({
 
   render: function render() {
 
-    var colores = this.props.colores;
-    var dias = this.props.dias.map(function (dia) {
-      return React.createElement(CalendarioDia, { name: dia.nombre, bloques: dia.bloques, colores: colores });
-    });
+    if (this.props.colores && this.props.dias) {
+      var colores = this.props.colores;
+      var dias = this.props.dias.map(function (dia) {
+        return React.createElement(CalendarioDia, { name: dia.nombre, bloques: dia.bloques, colores: colores });
+      });
 
-    return React.createElement(
-      'section',
-      { className: 'calendario' },
-      dias
-    );
+      return React.createElement(
+        'section',
+        { className: 'calendario' },
+        dias
+      );
+    } else {
+      return React.createElement(
+        'section',
+        { className: 'calendario' },
+        React.createElement(
+          'h1',
+          null,
+          'Selecciona un horario.'
+        )
+      );
+    }
   }
 });
 
@@ -297,125 +309,8 @@ var Vista = React.createClass({
 
   getInitialState: function getInitialState() {
     return {
-      calendario: [{
-        nombre: 'Lunes',
-        bloques: [{
-          key: '6-8',
-          counter: 0
-        }, {
-          key: '8-10',
-          counter: 0
-        }, {
-          key: '10-12',
-          counter: 0
-        }, {
-          key: '12-2',
-          counter: 0
-        }, {
-          key: '2-4',
-          counter: 0
-        }, {
-          key: '4-6',
-          counter: 0
-        }]
-      }, {
-        nombre: 'Martes',
-        bloques: [{
-          key: '6-8',
-          counter: 0
-        }, {
-          key: '8-10',
-          counter: 0
-        }, {
-          key: '10-12',
-          counter: 0
-        }, {
-          key: '12-2',
-          counter: 0
-        }, {
-          key: '2-4',
-          counter: 0
-        }, {
-          key: '4-6',
-          counter: 0
-        }]
-      }, {
-        nombre: 'Miercoles',
-        bloques: [{
-          key: '6-8',
-          counter: 0
-        }, {
-          key: '8-10',
-          counter: 0
-        }, {
-          key: '10-12',
-          counter: 0
-        }, {
-          key: '12-2',
-          counter: 0
-        }, {
-          key: '2-4',
-          counter: 0
-        }, {
-          key: '4-6',
-          counter: 0
-        }]
-      }, {
-        nombre: 'Jueves',
-        bloques: [{
-          key: '6-8',
-          counter: 0
-        }, {
-          key: '8-10',
-          counter: 0
-        }, {
-          key: '10-12',
-          counter: 0
-        }, {
-          key: '12-2',
-          counter: 0
-        }, {
-          key: '2-4',
-          counter: 0
-        }, {
-          key: '4-6',
-          counter: 0
-        }]
-      }, {
-        nombre: 'Viernes',
-        bloques: [{
-          key: '6-8',
-          counter: 0
-        }, {
-          key: '8-10',
-          counter: 0
-        }, {
-          key: '10-12',
-          counter: 0
-        }, {
-          key: '12-2',
-          counter: 0
-        }, {
-          key: '2-4',
-          counter: 0
-        }, {
-          key: '4-6',
-          counter: 0
-        }]
-      }]
+      calendario: null
     };
-  },
-
-  componentDidMount: function componentDidMount() {
-    var self = this;
-    setTimeout(function () {
-      self.setState(function (prev) {
-        prev.calendario[0].bloques[0].counter = 5;
-        return {
-          calendario: prev.calendario
-        };
-      });
-    }, 3000, self);
   },
 
   render: function render() {
