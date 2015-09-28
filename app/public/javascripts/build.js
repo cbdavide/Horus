@@ -15,14 +15,16 @@ var Main = function Main(data) {
       React.render(React.createElement(Vista, {
         colores: this.data.colores,
         nombre: this.data.usuario.nombre,
-        avatar: this.data.usuario.avatar
+        avatar: this.data.usuario.avatar,
+        horarios: this.data.horarios
       }), document.getElementById('contenido'));
     } else {
       var VistaComponent = React.createFactory(Vista);
       return React.renderToString(VistaComponent({
         colores: this.data.colores,
         nombre: this.data.usuario.nombre,
-        avatar: this.data.usuario.avatar
+        avatar: this.data.usuario.avatar,
+        horarios: this.data.horarios
       }));
     }
   };
@@ -230,8 +232,9 @@ var ListaCalendarios = React.createClass({
     return React.createElement(
       'ul',
       { className: 'panelUsuario__listaCalendarios' },
-      React.createElement(CalendarioItem, { nombre: 'Grupo de trabajo' }),
-      React.createElement(CalendarioItem, { nombre: 'Estudiar cálculo' })
+      this.props.horarios.map(function (horario) {
+        return React.createElement(CalendarioItem, { key: horario.key, nombre: horario.nombre });
+      })
     );
   }
 
@@ -258,7 +261,7 @@ var PanelUsuario = React.createClass({
         avatar: this.props.avatar,
         nombre: this.props.nombre
       }),
-      React.createElement(ListaCalendarios, null)
+      React.createElement(ListaCalendarios, { horarios: this.props.horarios })
     );
   }
 
@@ -419,7 +422,11 @@ var Vista = React.createClass({
     return React.createElement(
       'section',
       { className: 'vista' },
-      React.createElement(PanelUsuario, { nombre: this.props.nombre, avatar: this.props.avatar }),
+      React.createElement(PanelUsuario, {
+        nombre: this.props.nombre,
+        avatar: this.props.avatar,
+        horarios: this.props.horarios
+      }),
       React.createElement(Usuarios, null),
       React.createElement(Calendario, { dias: this.state.calendario, colores: this.props.colores })
     );

@@ -16,6 +16,7 @@ var Main = function(data) {
           colores={this.data.colores}
           nombre={this.data.usuario.nombre}
           avatar={this.data.usuario.avatar}
+          horarios={this.data.horarios}
         />,
         document.getElementById('contenido')
       );
@@ -25,7 +26,8 @@ var Main = function(data) {
         VistaComponent({
           colores: this.data.colores,
           nombre: this.data.usuario.nombre,
-          avatar: this.data.usuario.avatar
+          avatar: this.data.usuario.avatar,
+          horarios: this.data.horarios
         })
       );
     }

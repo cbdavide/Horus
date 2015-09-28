@@ -16,7 +16,7 @@ var PanelUsuario = React.createClass({
           nombre={this.props.nombre}
         />
 
-        <ListaCalendarios />
+        <ListaCalendarios horarios={this.props.horarios}/>
 
       </div>
     );

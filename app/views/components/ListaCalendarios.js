@@ -8,8 +8,9 @@ var ListaCalendarios = React.createClass({
 
     return (
       <ul className="panelUsuario__listaCalendarios">
-        <CalendarioItem nombre="Grupo de trabajo" />
-        <CalendarioItem nombre="Estudiar cálculo" />
+        {this.props.horarios.map(function(horario){
+          return (<CalendarioItem key={horario.key} nombre={horario.nombre} />);
+        })}
       </ul>
     );
   }

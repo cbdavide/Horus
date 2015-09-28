@@ -1,10 +1,21 @@
 require('node-jsx').install();
+var usuarios = require('../../data_test/users.js');
+var horarios = require('../../data_test/horarios.js');
 
 var React = require('react/addons');
 var Main = require('../views/components');
 
+var h = horarios.map(function(horario){
+  return {
+    nombre: horario.nombre,
+    key: horario.key
+  };
+});
+
 var datos = {
-  colores : [
+  usuario: usuarios[0],
+  horarios: h,
+  colores: [
     '#FFFFFF',
     '#E8F5E9',
     '#C8E6C9',
