@@ -173,7 +173,7 @@ var Vista = React.createClass({
   render: function(){
     return (
       <section className="vista">
-        <PanelUsuario />
+        <PanelUsuario nombre={this.props.nombre} avatar={this.props.avatar}/>
         <Usuarios />
         <Calendario dias={this.state.calendario} colores={this.props.colores}/>
       </section>

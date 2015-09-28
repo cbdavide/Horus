@@ -12,10 +12,18 @@ var Main = function Main(data) {
   this.render = function () {
 
     if (canUseDOM) {
-      React.render(React.createElement(Vista, { colores: this.data.colores }), document.getElementById('contenido'));
+      React.render(React.createElement(Vista, {
+        colores: this.data.colores,
+        nombre: this.data.usuario.nombre,
+        avatar: this.data.usuario.avatar
+      }), document.getElementById('contenido'));
     } else {
       var VistaComponent = React.createFactory(Vista);
-      return React.renderToString(VistaComponent({ colores: this.data.colores }));
+      return React.renderToString(VistaComponent({
+        colores: this.data.colores,
+        nombre: this.data.usuario.nombre,
+        avatar: this.data.usuario.avatar
+      }));
     }
   };
 };
@@ -247,8 +255,8 @@ var PanelUsuario = React.createClass({
       'div',
       { className: 'panelUsuario' },
       React.createElement(InformacionPersonal, {
-        avatar: 'https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-xft1/v/t1.0-9/10404085_944502215582948_7976228266989840397_n.jpg?oh=0c7faee63d737e5dbdd58e6a518ad830&oe=566CF784&__gda__=1453396494_79146a348e2dd73c95a10db3593425a5',
-        nombre: 'David'
+        avatar: this.props.avatar,
+        nombre: this.props.nombre
       }),
       React.createElement(ListaCalendarios, null)
     );
@@ -411,7 +419,7 @@ var Vista = React.createClass({
     return React.createElement(
       'section',
       { className: 'vista' },
-      React.createElement(PanelUsuario, null),
+      React.createElement(PanelUsuario, { nombre: this.props.nombre, avatar: this.props.avatar }),
       React.createElement(Usuarios, null),
       React.createElement(Calendario, { dias: this.state.calendario, colores: this.props.colores })
     );

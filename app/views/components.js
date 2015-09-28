@@ -12,12 +12,22 @@ var Main = function(data) {
 
     if(canUseDOM) {
       React.render(
-        <Vista colores={this.data.colores} />,
+        <Vista
+          colores={this.data.colores}
+          nombre={this.data.usuario.nombre}
+          avatar={this.data.usuario.avatar}
+        />,
         document.getElementById('contenido')
       );
     } else {
       var VistaComponent = React.createFactory(Vista);
-      return React.renderToString(VistaComponent({colores: this.data.colores}));
+      return React.renderToString(
+        VistaComponent({
+          colores: this.data.colores,
+          nombre: this.data.usuario.nombre,
+          avatar: this.data.usuario.avatar
+        })
+      );
     }
   }
 }
