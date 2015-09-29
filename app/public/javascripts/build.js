@@ -62,7 +62,7 @@ var Calendario = React.createClass({
     } else {
       return React.createElement(
         'section',
-        { className: 'calendario' },
+        { className: 'calendario-disable' },
         React.createElement(
           'h1',
           null,
@@ -311,6 +311,123 @@ var Vista = React.createClass({
     return {
       calendario: null
     };
+  },
+
+  componentDidMount: function componentDidMount() {
+    var self = this;
+    setTimeout(function () {
+      self.setState({
+        calendario: [{
+          nombre: 'Lunes',
+          bloques: [{
+            key: '6-8',
+            counter: 0
+          }, {
+            key: '8-10',
+            counter: 0
+          }, {
+            key: '10-12',
+            counter: 0
+          }, {
+            key: '12-2',
+            counter: 0
+          }, {
+            key: '2-4',
+            counter: 0
+          }, {
+            key: '4-6',
+            counter: 0
+          }]
+        }, {
+          nombre: 'Martes',
+          bloques: [{
+            key: '6-8',
+            counter: 0
+          }, {
+            key: '8-10',
+            counter: 0
+          }, {
+            key: '10-12',
+            counter: 0
+          }, {
+            key: '12-2',
+            counter: 0
+          }, {
+            key: '2-4',
+            counter: 0
+
+          }, {
+            key: '4-6',
+            counter: 0
+          }]
+        }, {
+          nombre: 'Miercoles',
+          bloques: [{
+            key: '6-8',
+            counter: 0
+          }, {
+            key: '8-10',
+            counter: 0
+          }, {
+            key: '10-12',
+            counter: 0
+          }, {
+            key: '12-2',
+            counter: 0
+
+          }, {
+            key: '2-4',
+            counter: 0
+          }, {
+            key: '4-6',
+            counter: 0
+          }]
+        }, {
+          nombre: 'Jueves',
+          bloques: [{
+            key: '6-8',
+            counter: 0
+          }, {
+            key: '8-10',
+            counter: 0
+          }, {
+            key: '10-12',
+            counter: 0
+          }, {
+            key: '12-2',
+            counter: 0
+          }, {
+            key: '2-4',
+            counter: 0
+          }, {
+            key: '4-6',
+            counter: 0
+          }]
+        }, {
+          nombre: 'Viernes',
+          bloques: [{
+            key: '6-8',
+            counter: 0
+          }, {
+            key: '8-10',
+            counter: 0
+          }, {
+            key: '10-12',
+            counter: 0
+          }, {
+            key: '12-2',
+
+            counter: 0
+          }, {
+            key: '2-4',
+            counter: 0
+          }, {
+            key: '4-6',
+            counter: 0
+          }]
+        }]
+      });
+    }, 3000, self);
   },
 
   render: function render() {
