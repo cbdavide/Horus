@@ -1,5 +1,6 @@
 
 var  React = require('react');
+var  $ = require('jquery');
 var  Calendario = require('./Calendario');
 var  Usuarios = require('./Usuarios');
 var  PanelUsuario = require('./PanelUsuario');
@@ -12,168 +13,20 @@ var Vista = React.createClass({
     }
   },
 
-  seleccionarHorario: function(id,nombre) {
-    console.log('Horario '+ nombre + ' cargado!');
-    console.log(id);
-  },
+  seleccionarHorario: function(id) {
+    $.ajax({
 
-  // componentDidMount: function() {
-  //   var self = this;
-  //   setTimeout(function() {
-  //     self.setState({
-  //       calendario: [
-  //         {
-  //           nombre: 'Lunes',
-  //           bloques: [
-  //             {
-  //               key: '6-8',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '8-10',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '10-12',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '12-2',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '2-4',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '4-6',
-  //               counter: 0,
-  //             },
-  //           ]
-  //         },
-  //         {
-  //           nombre: 'Martes',
-  //           bloques: [
-  //             {
-  //               key: '6-8',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '8-10',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '10-12',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '12-2',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '2-4',
-  //               counter: 0,
-  //
-  //             },
-  //             {
-  //               key: '4-6',
-  //               counter: 0,
-  //             },
-  //           ]
-  //         },
-  //         {
-  //           nombre: 'Miercoles',
-  //           bloques: [
-  //             {
-  //               key: '6-8',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '8-10',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '10-12',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '12-2',
-  //               counter: 0,
-  //
-  //             },
-  //             {
-  //               key: '2-4',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '4-6',
-  //               counter: 0,
-  //             },
-  //           ]
-  //         },
-  //         {
-  //           nombre: 'Jueves',
-  //           bloques: [
-  //             {
-  //               key: '6-8',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '8-10',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '10-12',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '12-2',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '2-4',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '4-6',
-  //               counter: 0,
-  //             },
-  //           ]
-  //         },
-  //         {
-  //           nombre: 'Viernes',
-  //           bloques: [
-  //             {
-  //               key: '6-8',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '8-10',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '10-12',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '12-2',
-  //
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '2-4',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '4-6',
-  //               counter: 0,
-  //             },
-  //           ]
-  //         }
-  //       ]
-  //     });
-  //   },3000, self)
-  // },
+      url: '/horario',
+      data_type: 'json',
+      cache: false,
+      data: {id: id},
+
+      success: function(data) {
+        this.setState({calendario: data.dias});
+      }.bind(this)
+
+    });
+  },
 
   render: function(){
     return (

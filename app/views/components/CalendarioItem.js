@@ -9,7 +9,7 @@ var CalendarioItem = React.createClass({
     var nombre = this.props.nombre;
     return (
       <li className="panelUsuario__listaCalendarios__item"
-          onClick={this.props.handler.bind(null,id, nombre)}>
+          onClick={this.props.handler.bind(null,id)}>
 
         {nombre}
 
