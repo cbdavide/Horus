@@ -170,10 +170,13 @@ var CalendarioItem = React.createClass({
 
   render: function render() {
 
+    var id = this.props.id;
+    var nombre = this.props.nombre;
     return React.createElement(
       "li",
-      { className: "panelUsuario__listaCalendarios__item" },
-      this.props.nombre
+      { className: "panelUsuario__listaCalendarios__item",
+        onClick: this.props.handler.bind(null, id, nombre) },
+      nombre
     );
   }
 
@@ -241,11 +244,18 @@ var ListaCalendarios = React.createClass({
 
   render: function render() {
 
+    var handler = this.props.handler;
+
     return React.createElement(
       'ul',
       { className: 'panelUsuario__listaCalendarios' },
       this.props.horarios.map(function (horario) {
-        return React.createElement(CalendarioItem, { key: horario.key, nombre: horario.nombre });
+        return React.createElement(CalendarioItem, {
+          key: horario.key,
+          id: horario.key,
+          nombre: horario.nombre,
+          handler: handler
+        });
       })
     );
   }
@@ -273,7 +283,10 @@ var PanelUsuario = React.createClass({
         avatar: this.props.avatar,
         nombre: this.props.nombre
       }),
-      React.createElement(ListaCalendarios, { horarios: this.props.horarios })
+      React.createElement(ListaCalendarios, {
+        horarios: this.props.horarios,
+        handler: this.props.handler
+      })
     );
   }
 
@@ -313,122 +326,168 @@ var Vista = React.createClass({
     };
   },
 
-  componentDidMount: function componentDidMount() {
-    var self = this;
-    setTimeout(function () {
-      self.setState({
-        calendario: [{
-          nombre: 'Lunes',
-          bloques: [{
-            key: '6-8',
-            counter: 0
-          }, {
-            key: '8-10',
-            counter: 0
-          }, {
-            key: '10-12',
-            counter: 0
-          }, {
-            key: '12-2',
-            counter: 0
-          }, {
-            key: '2-4',
-            counter: 0
-          }, {
-            key: '4-6',
-            counter: 0
-          }]
-        }, {
-          nombre: 'Martes',
-          bloques: [{
-            key: '6-8',
-            counter: 0
-          }, {
-            key: '8-10',
-            counter: 0
-          }, {
-            key: '10-12',
-            counter: 0
-          }, {
-            key: '12-2',
-            counter: 0
-          }, {
-            key: '2-4',
-            counter: 0
-
-          }, {
-            key: '4-6',
-            counter: 0
-          }]
-        }, {
-          nombre: 'Miercoles',
-          bloques: [{
-            key: '6-8',
-            counter: 0
-          }, {
-            key: '8-10',
-            counter: 0
-          }, {
-            key: '10-12',
-            counter: 0
-          }, {
-            key: '12-2',
-            counter: 0
-
-          }, {
-            key: '2-4',
-            counter: 0
-          }, {
-            key: '4-6',
-            counter: 0
-          }]
-        }, {
-          nombre: 'Jueves',
-          bloques: [{
-            key: '6-8',
-            counter: 0
-          }, {
-            key: '8-10',
-            counter: 0
-          }, {
-            key: '10-12',
-            counter: 0
-          }, {
-            key: '12-2',
-            counter: 0
-          }, {
-            key: '2-4',
-            counter: 0
-          }, {
-            key: '4-6',
-            counter: 0
-          }]
-        }, {
-          nombre: 'Viernes',
-          bloques: [{
-            key: '6-8',
-            counter: 0
-          }, {
-            key: '8-10',
-            counter: 0
-          }, {
-            key: '10-12',
-            counter: 0
-          }, {
-            key: '12-2',
-
-            counter: 0
-          }, {
-            key: '2-4',
-            counter: 0
-          }, {
-            key: '4-6',
-            counter: 0
-          }]
-        }]
-      });
-    }, 3000, self);
+  seleccionarHorario: function seleccionarHorario(id, nombre) {
+    console.log('Horario ' + nombre + ' cargado!');
+    console.log(id);
   },
+
+  // componentDidMount: function() {
+  //   var self = this;
+  //   setTimeout(function() {
+  //     self.setState({
+  //       calendario: [
+  //         {
+  //           nombre: 'Lunes',
+  //           bloques: [
+  //             {
+  //               key: '6-8',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '8-10',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '10-12',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '12-2',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '2-4',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '4-6',
+  //               counter: 0,
+  //             },
+  //           ]
+  //         },
+  //         {
+  //           nombre: 'Martes',
+  //           bloques: [
+  //             {
+  //               key: '6-8',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '8-10',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '10-12',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '12-2',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '2-4',
+  //               counter: 0,
+  //
+  //             },
+  //             {
+  //               key: '4-6',
+  //               counter: 0,
+  //             },
+  //           ]
+  //         },
+  //         {
+  //           nombre: 'Miercoles',
+  //           bloques: [
+  //             {
+  //               key: '6-8',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '8-10',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '10-12',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '12-2',
+  //               counter: 0,
+  //
+  //             },
+  //             {
+  //               key: '2-4',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '4-6',
+  //               counter: 0,
+  //             },
+  //           ]
+  //         },
+  //         {
+  //           nombre: 'Jueves',
+  //           bloques: [
+  //             {
+  //               key: '6-8',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '8-10',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '10-12',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '12-2',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '2-4',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '4-6',
+  //               counter: 0,
+  //             },
+  //           ]
+  //         },
+  //         {
+  //           nombre: 'Viernes',
+  //           bloques: [
+  //             {
+  //               key: '6-8',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '8-10',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '10-12',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '12-2',
+  //
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '2-4',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '4-6',
+  //               counter: 0,
+  //             },
+  //           ]
+  //         }
+  //       ]
+  //     });
+  //   },3000, self)
+  // },
 
   render: function render() {
     return React.createElement(
@@ -437,7 +496,8 @@ var Vista = React.createClass({
       React.createElement(PanelUsuario, {
         nombre: this.props.nombre,
         avatar: this.props.avatar,
-        horarios: this.props.horarios
+        horarios: this.props.horarios,
+        handler: this.seleccionarHorario
       }),
       React.createElement(Usuarios, null),
       React.createElement(Calendario, { dias: this.state.calendario, colores: this.props.colores })

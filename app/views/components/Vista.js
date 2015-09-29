@@ -12,163 +12,168 @@ var Vista = React.createClass({
     }
   },
 
-  componentDidMount: function() {
-    var self = this;
-    setTimeout(function() {
-      self.setState({
-        calendario: [
-          {
-            nombre: 'Lunes',
-            bloques: [
-              {
-                key: '6-8',
-                counter: 0,
-              },
-              {
-                key: '8-10',
-                counter: 0,
-              },
-              {
-                key: '10-12',
-                counter: 0,
-              },
-              {
-                key: '12-2',
-                counter: 0,
-              },
-              {
-                key: '2-4',
-                counter: 0,
-              },
-              {
-                key: '4-6',
-                counter: 0,
-              },
-            ]
-          },
-          {
-            nombre: 'Martes',
-            bloques: [
-              {
-                key: '6-8',
-                counter: 0,
-              },
-              {
-                key: '8-10',
-                counter: 0,
-              },
-              {
-                key: '10-12',
-                counter: 0,
-              },
-              {
-                key: '12-2',
-                counter: 0,
-              },
-              {
-                key: '2-4',
-                counter: 0,
-
-              },
-              {
-                key: '4-6',
-                counter: 0,
-              },
-            ]
-          },
-          {
-            nombre: 'Miercoles',
-            bloques: [
-              {
-                key: '6-8',
-                counter: 0,
-              },
-              {
-                key: '8-10',
-                counter: 0,
-              },
-              {
-                key: '10-12',
-                counter: 0,
-              },
-              {
-                key: '12-2',
-                counter: 0,
-
-              },
-              {
-                key: '2-4',
-                counter: 0,
-              },
-              {
-                key: '4-6',
-                counter: 0,
-              },
-            ]
-          },
-          {
-            nombre: 'Jueves',
-            bloques: [
-              {
-                key: '6-8',
-                counter: 0,
-              },
-              {
-                key: '8-10',
-                counter: 0,
-              },
-              {
-                key: '10-12',
-                counter: 0,
-              },
-              {
-                key: '12-2',
-                counter: 0,
-              },
-              {
-                key: '2-4',
-                counter: 0,
-              },
-              {
-                key: '4-6',
-                counter: 0,
-              },
-            ]
-          },
-          {
-            nombre: 'Viernes',
-            bloques: [
-              {
-                key: '6-8',
-                counter: 0,
-              },
-              {
-                key: '8-10',
-                counter: 0,
-              },
-              {
-                key: '10-12',
-                counter: 0,
-              },
-              {
-                key: '12-2',
-
-                counter: 0,
-              },
-              {
-                key: '2-4',
-                counter: 0,
-              },
-              {
-                key: '4-6',
-                counter: 0,
-              },
-            ]
-          }
-        ]
-      });
-    },3000, self)
+  seleccionarHorario: function(id,nombre) {
+    console.log('Horario '+ nombre + ' cargado!');
+    console.log(id);
   },
+
+  // componentDidMount: function() {
+  //   var self = this;
+  //   setTimeout(function() {
+  //     self.setState({
+  //       calendario: [
+  //         {
+  //           nombre: 'Lunes',
+  //           bloques: [
+  //             {
+  //               key: '6-8',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '8-10',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '10-12',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '12-2',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '2-4',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '4-6',
+  //               counter: 0,
+  //             },
+  //           ]
+  //         },
+  //         {
+  //           nombre: 'Martes',
+  //           bloques: [
+  //             {
+  //               key: '6-8',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '8-10',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '10-12',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '12-2',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '2-4',
+  //               counter: 0,
+  //
+  //             },
+  //             {
+  //               key: '4-6',
+  //               counter: 0,
+  //             },
+  //           ]
+  //         },
+  //         {
+  //           nombre: 'Miercoles',
+  //           bloques: [
+  //             {
+  //               key: '6-8',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '8-10',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '10-12',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '12-2',
+  //               counter: 0,
+  //
+  //             },
+  //             {
+  //               key: '2-4',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '4-6',
+  //               counter: 0,
+  //             },
+  //           ]
+  //         },
+  //         {
+  //           nombre: 'Jueves',
+  //           bloques: [
+  //             {
+  //               key: '6-8',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '8-10',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '10-12',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '12-2',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '2-4',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '4-6',
+  //               counter: 0,
+  //             },
+  //           ]
+  //         },
+  //         {
+  //           nombre: 'Viernes',
+  //           bloques: [
+  //             {
+  //               key: '6-8',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '8-10',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '10-12',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '12-2',
+  //
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '2-4',
+  //               counter: 0,
+  //             },
+  //             {
+  //               key: '4-6',
+  //               counter: 0,
+  //             },
+  //           ]
+  //         }
+  //       ]
+  //     });
+  //   },3000, self)
+  // },
 
   render: function(){
     return (
@@ -177,6 +182,7 @@ var Vista = React.createClass({
           nombre={this.props.nombre}
           avatar={this.props.avatar}
           horarios={this.props.horarios}
+          handler={this.seleccionarHorario}
         />
         <Usuarios />
         <Calendario dias={this.state.calendario} colores={this.props.colores}/>
