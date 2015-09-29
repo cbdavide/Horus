@@ -20,7 +20,7 @@ var Calendario = React.createClass({
       );
     } else {
       return (
-        <section className="calendario">
+        <section className="calendario-disable">
           <h1>Selecciona un horario.</h1>
         </section>
       );
