@@ -1,7 +1,8 @@
 
 var routers = [
 
-  require('./routers/home')
+  require('./routers/home'),
+  require('./routers/horario')
 
 ]
 
