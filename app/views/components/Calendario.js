@@ -9,7 +9,12 @@ var Calendario = React.createClass({
         var colores = this.props.colores;
         var dias = this.props.dias.map(function(dia){
           return (
-            <CalendarioDia name={dia.nombre} bloques={dia.bloques} colores={colores}/>
+            <CalendarioDia
+              key={dia.key}
+              name={dia.nombre}
+              bloques={dia.bloques}
+              colores={colores}
+            />
           );
         })
 

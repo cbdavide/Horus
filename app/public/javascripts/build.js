@@ -51,7 +51,12 @@ var Calendario = React.createClass({
     if (this.props.colores && this.props.dias) {
       var colores = this.props.colores;
       var dias = this.props.dias.map(function (dia) {
-        return React.createElement(CalendarioDia, { name: dia.nombre, bloques: dia.bloques, colores: colores });
+        return React.createElement(CalendarioDia, {
+          key: dia.key,
+          name: dia.nombre,
+          bloques: dia.bloques,
+          colores: colores
+        });
       });
 
       return React.createElement(
@@ -336,184 +341,45 @@ var Vista = React.createClass({
       data: { id: id },
 
       success: (function (data) {
-        this.setState({ calendario: data.dias });
+        this.setState({ calendario: data });
         console.log(data);
       }).bind(this)
 
     });
   },
 
-  // componentDidMount: function() {
-  //   var self = this;
-  //   setTimeout(function() {
-  //     self.setState({
-  //       calendario: [
-  //         {
-  //           nombre: 'Lunes',
-  //           bloques: [
-  //             {
-  //               key: '6-8',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '8-10',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '10-12',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '12-2',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '2-4',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '4-6',
-  //               counter: 0,
-  //             },
-  //           ]
-  //         },
-  //         {
-  //           nombre: 'Martes',
-  //           bloques: [
-  //             {
-  //               key: '6-8',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '8-10',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '10-12',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '12-2',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '2-4',
-  //               counter: 0,
-  //
-  //             },
-  //             {
-  //               key: '4-6',
-  //               counter: 0,
-  //             },
-  //           ]
-  //         },
-  //         {
-  //           nombre: 'Miercoles',
-  //           bloques: [
-  //             {
-  //               key: '6-8',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '8-10',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '10-12',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '12-2',
-  //               counter: 0,
-  //
-  //             },
-  //             {
-  //               key: '2-4',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '4-6',
-  //               counter: 0,
-  //             },
-  //           ]
-  //         },
-  //         {
-  //           nombre: 'Jueves',
-  //           bloques: [
-  //             {
-  //               key: '6-8',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '8-10',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '10-12',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '12-2',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '2-4',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '4-6',
-  //               counter: 0,
-  //             },
-  //           ]
-  //         },
-  //         {
-  //           nombre: 'Viernes',
-  //           bloques: [
-  //             {
-  //               key: '6-8',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '8-10',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '10-12',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '12-2',
-  //
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '2-4',
-  //               counter: 0,
-  //             },
-  //             {
-  //               key: '4-6',
-  //               counter: 0,
-  //             },
-  //           ]
-  //         }
-  //       ]
-  //     });
-  //   },3000, self)
-  // },
-
   render: function render() {
-    return React.createElement(
-      'section',
-      { className: 'vista' },
-      React.createElement(PanelUsuario, {
-        nombre: this.props.nombre,
-        avatar: this.props.avatar,
-        horarios: this.props.horarios,
-        handler: this.seleccionarHorario
-      }),
-      React.createElement(Usuarios, null),
-      React.createElement(Calendario, { dias: this.state.calendario, colores: this.props.colores })
-    );
+    if (this.state.calendario) {
+      return React.createElement(
+        'section',
+        { className: 'vista' },
+        React.createElement(PanelUsuario, {
+          nombre: this.props.nombre,
+          avatar: this.props.avatar,
+          horarios: this.props.horarios,
+          handler: this.seleccionarHorario
+        }),
+        React.createElement(Usuarios, null),
+        React.createElement(Calendario, {
+          key: this.state.calendario.key,
+          dias: this.state.calendario.dias,
+          colores: this.props.colores
+        })
+      );
+    } else {
+      return React.createElement(
+        'section',
+        { className: 'vista' },
+        React.createElement(PanelUsuario, {
+          nombre: this.props.nombre,
+          avatar: this.props.avatar,
+          horarios: this.props.horarios,
+          handler: this.seleccionarHorario
+        }),
+        React.createElement(Usuarios, null),
+        React.createElement(Calendario, null)
+      );
+    }
   }
 });
 
