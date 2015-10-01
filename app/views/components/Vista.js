@@ -9,7 +9,9 @@ var Vista = React.createClass({
 
   getInitialState: function() {
     return {
-      calendario: null
+      calendario: {
+        key: 'empty'
+      }
     }
   },
 
@@ -29,37 +31,22 @@ var Vista = React.createClass({
   },
 
   render: function(){
-    if(this.state.calendario) {
-      return (
-        <section className="vista">
-          <PanelUsuario
-            nombre={this.props.nombre}
-            avatar={this.props.avatar}
-            horarios={this.props.horarios}
-            handler={this.seleccionarHorario}
-          />
-          <Usuarios />
-          <Calendario
-            key={this.state.calendario.key}
-            dias={this.state.calendario.dias}
-            colores={this.props.colores}
-          />
-        </section>
-      );
-    } else {
-      return (
-        <section className="vista">
-          <PanelUsuario
-            nombre={this.props.nombre}
-            avatar={this.props.avatar}
-            horarios={this.props.horarios}
-            handler={this.seleccionarHorario}
-          />
-          <Usuarios />
-          <Calendario />
-        </section>
-      );
-    }
+    return (
+      <section className="vista">
+        <PanelUsuario
+          nombre={this.props.nombre}
+          avatar={this.props.avatar}
+          horarios={this.props.horarios}
+          handler={this.seleccionarHorario}
+        />
+        <Usuarios />
+        <Calendario
+          key={this.state.calendario.key }
+          dias={this.state.calendario.dias }
+          colores={this.props.colores }
+        />
+      </section>
+    );
   }
 });
 

@@ -328,7 +328,9 @@ var Vista = React.createClass({
 
   getInitialState: function getInitialState() {
     return {
-      calendario: null
+      calendario: {
+        key: 'empty'
+      }
     };
   },
 
@@ -342,44 +344,28 @@ var Vista = React.createClass({
 
       success: (function (data) {
         this.setState({ calendario: data });
-        console.log(data);
       }).bind(this)
 
     });
   },
 
   render: function render() {
-    if (this.state.calendario) {
-      return React.createElement(
-        'section',
-        { className: 'vista' },
-        React.createElement(PanelUsuario, {
-          nombre: this.props.nombre,
-          avatar: this.props.avatar,
-          horarios: this.props.horarios,
-          handler: this.seleccionarHorario
-        }),
-        React.createElement(Usuarios, null),
-        React.createElement(Calendario, {
-          key: this.state.calendario.key,
-          dias: this.state.calendario.dias,
-          colores: this.props.colores
-        })
-      );
-    } else {
-      return React.createElement(
-        'section',
-        { className: 'vista' },
-        React.createElement(PanelUsuario, {
-          nombre: this.props.nombre,
-          avatar: this.props.avatar,
-          horarios: this.props.horarios,
-          handler: this.seleccionarHorario
-        }),
-        React.createElement(Usuarios, null),
-        React.createElement(Calendario, null)
-      );
-    }
+    return React.createElement(
+      'section',
+      { className: 'vista' },
+      React.createElement(PanelUsuario, {
+        nombre: this.props.nombre,
+        avatar: this.props.avatar,
+        horarios: this.props.horarios,
+        handler: this.seleccionarHorario
+      }),
+      React.createElement(Usuarios, null),
+      React.createElement(Calendario, {
+        key: this.state.calendario.key,
+        dias: this.state.calendario.dias,
+        colores: this.props.colores
+      })
+    );
   }
 });
 
