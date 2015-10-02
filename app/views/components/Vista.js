@@ -39,13 +39,28 @@ var Vista = React.createClass({
           horarios={this.props.horarios}
           handler={this.seleccionarHorario}
         />
-        <Usuarios />
         <Calendario
           key={this.state.calendario.key }
           dias={this.state.calendario.dias }
           nombre={this.state.calendario.nombre}
           colores={this.props.colores }
         />
+        <Usuarios colaboradores={
+          [
+            {
+              avatar: 'img/2pug.jpg',
+              nombre : '2Pug'
+            },
+            {
+              avatar: 'img/eminem_pug.jpg',
+              nombre : 'Eminem Pug'
+            },
+            {
+              avatar: 'img/pug.jpg',
+              nombre : 'Pug'
+            }
+          ]
+        }/>
       </section>
     );
   }
