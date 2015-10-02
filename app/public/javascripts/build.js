@@ -62,7 +62,16 @@ var Calendario = React.createClass({
       return React.createElement(
         'section',
         { className: 'calendario' },
-        dias
+        React.createElement(
+          'h2',
+          { className: 'calendario__nombre' },
+          this.props.nombre
+        ),
+        React.createElement(
+          'div',
+          { className: 'calendario__dia__contanier' },
+          dias
+        )
       );
     } else {
       return React.createElement(
@@ -363,6 +372,7 @@ var Vista = React.createClass({
       React.createElement(Calendario, {
         key: this.state.calendario.key,
         dias: this.state.calendario.dias,
+        nombre: this.state.calendario.nombre,
         colores: this.props.colores
       })
     );

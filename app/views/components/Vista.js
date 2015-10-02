@@ -43,6 +43,7 @@ var Vista = React.createClass({
         <Calendario
           key={this.state.calendario.key }
           dias={this.state.calendario.dias }
+          nombre={this.state.calendario.nombre}
           colores={this.props.colores }
         />
       </section>

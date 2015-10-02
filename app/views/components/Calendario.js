@@ -20,7 +20,12 @@ var Calendario = React.createClass({
 
         return (
         <section className="calendario">
-          {dias}
+          <h2 className="calendario__nombre">
+            {this.props.nombre}
+          </h2>
+          <div className="calendario__dia__contanier">
+            {dias}
+          </div>
         </section>
       );
     } else {
