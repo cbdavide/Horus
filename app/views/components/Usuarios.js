@@ -4,18 +4,30 @@ var Colaborador = require('./Colaborador');
 
 var Usuarios = React.createClass({
   render: function() {
-    return (
-      <section className="usuarios">
-        {this.props.colaboradores.map(function(colaborador){
+    if(this.props.colaboradores){
 
-          return (
-            <Colaborador
+      var usuarios = this.props.colaboradores.map(function(colaborador) {
+        return (
+          <Colaborador
+            key={colaborador.key}
             avatar={colaborador.avatar}
             nombre={colaborador.nombre}
-            />);
-        })}
-      </section>
-    );
+          />
+        );
+      });
+
+      return (
+        <section className="usuarios">
+          {usuarios}
+        </section>
+      );
+
+    } else {
+      return (
+        <section className="usuarios">
+        </section>
+      );
+    }
   }
 });
 

@@ -10,7 +10,8 @@ var Vista = React.createClass({
   getInitialState: function() {
     return {
       calendario: {
-        key: 'empty'
+        key: 'empty',
+        usuarios: null
       }
     }
   },
@@ -24,6 +25,7 @@ var Vista = React.createClass({
       data: {id: id},
 
       success: function(data) {
+        console.log(data);
         this.setState({calendario: data});
       }.bind(this)
 
@@ -45,22 +47,9 @@ var Vista = React.createClass({
           nombre={this.state.calendario.nombre}
           colores={this.props.colores }
         />
-        <Usuarios colaboradores={
-          [
-            {
-              avatar: 'img/2pug.jpg',
-              nombre : '2Pug'
-            },
-            {
-              avatar: 'img/eminem_pug.jpg',
-              nombre : 'Eminem Pug'
-            },
-            {
-              avatar: 'img/pug.jpg',
-              nombre : 'Pug'
-            }
-          ]
-        }/>
+        <Usuarios
+          colaboradores={this.state.calendario.usuarios}
+        />
       </section>
     );
   }
