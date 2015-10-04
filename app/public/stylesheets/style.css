@@ -41,24 +41,7 @@ body {
     width: 100%;
   }
 
-/*.usuarios {
-  align-self: center;
-  flex-grow: 1;
-}
-  .usuarios__usuario {
-    display: flex;
-    justify-content: center;
-    margin: 1em;
-  }
-
-  .usuarios__imagen {
-    border-radius: 50%;
-    width: 60%;
-  }*/
-
-
 .calendario {
-  border: 0.1px solid #bdc3c7;
   display: flex;
   flex-direction: column;
   flex-grow: 15;
@@ -79,7 +62,11 @@ body {
     display: flex;
     flex-direction: row;
   }
+  .calendario__dia:first-child {
+    border: none;
+  }
   .calendario__dia {
+    border-left: 0.1px solid #bdc3c7;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -91,7 +78,7 @@ body {
     text-align: center;
   }
   .calendario__bloque {
-    border: 0.1px solid #bdc3c7;
+    border-bottom: 0.1px solid #bdc3c7;
     border-top: none;
     height: 95px;
     flex-grow: 2;

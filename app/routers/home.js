@@ -1,20 +1,12 @@
 require('node-jsx').install();
-var usuarios = require('../../data_test/users.js');
-var horarios = require('../../data_test/horarios.js');
+
+var fs = require('fs');
 
 var React = require('react/addons');
 var Main = require('../views/components');
 
-var h = horarios.map(function(horario){
-  return {
-    nombre: horario.nombre,
-    key: horario.key
-  };
-});
 
 var datos = {
-  usuario: usuarios[0],
-  horarios: h,
   colores: [
     '#FFFFFF',
     '#E8F5E9',
@@ -37,11 +29,28 @@ var home = {
   path: '/home',
   method: 'get',
   callback: function(req,res) {
+    fs.readFile('data_test/users.json', 'utf-8', function(err, data) {
 
-    res.render('index',{
-      contenido : vista.render(),
-      data : JSON.stringify(datos)
+      datos.usuario = JSON.parse(data)[1];
+
+      fs.readFile('data_test/horarios.json', 'utf-8', function(err, data){
+
+        datos.horarios = (JSON.parse(data)).map(function(horario){
+          return {
+            nombre: horario.nombre,
+            key: horario.key
+          };
+        });
+
+        res.render('index',{
+          contenido : vista.render(),
+          data : JSON.stringify(datos)
+        });
+
+      });
+
     });
+
   }
 
 }
