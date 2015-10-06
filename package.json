@@ -11,7 +11,10 @@
     "react": "^0.13.3"
   },
   "scripts": {
-    "build": "browserify app/views/components.js > app/public/javascripts/build.js -t babelify",
     "start": "node app.js"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-browserify": "^4.0.1"
   }
 }
