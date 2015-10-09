@@ -50,12 +50,14 @@ var Calendario = React.createClass({
 
     if (this.props.colores && this.props.dias) {
       var colores = this.props.colores;
+      var votar = this.props.votar;
       var dias = this.props.dias.map(function (dia) {
         return React.createElement(CalendarioDia, {
           key: dia.key,
           name: dia.nombre,
           bloques: dia.bloques,
-          colores: colores
+          colores: colores,
+          votar: votar
         });
       });
 
@@ -90,55 +92,18 @@ var Calendario = React.createClass({
 module.exports = Calendario;
 
 },{"./CalendarioDia":4,"react":169}],3:[function(require,module,exports){
-'use strict';
+"use strict";
 
 var React = require('react');
 
 var CalendarioBloque = React.createClass({
-  displayName: 'CalendarioBloque',
-
-  aumentarIndex: function aumentarIndex() {
-
-    if (this.state.index < this.props.colores.length - 1) {
-
-      this.setState(function (previus) {
-        return { index: previus.index + 1 };
-      });
-    }
-    return this.state.index;
-  },
-
-  getInitialState: function getInitialState() {
-    return {
-      index: -1,
-      value: 0,
-      color: '#FFFFFF'
-    };
-  },
-
-  aumentar: function aumentar(e) {
-    this.setState(function (previus) {
-      return {
-        value: previus.value + 1,
-        color: this.props.colores[this.aumentarIndex()]
-      };
-    });
-  },
-
-  establecerColor: function establecerColor(num) {
-    if (num < this.props.colores.length - 1) {
-      return num;
-    } else {
-      return this.props.colores.length - 1;
-    }
-  },
+  displayName: "CalendarioBloque",
 
   render: function render() {
-    var color = this.props.colores[this.establecerColor(this.props.counter)];
-    return React.createElement('div', { className: 'calendario__bloque',
-      style: { 'backgroundColor': color },
-      onClick: this.aumentar });
+    return React.createElement("div", { className: "calendario__bloque",
+      onClick: this.props.votar.bind(null, this.props.counter) });
   }
+
 });
 
 module.exports = CalendarioBloque;
@@ -156,11 +121,13 @@ var CalendarioDia = React.createClass({
   render: function render() {
 
     var colores = this.props.colores;
+    var votar = this.props.votar;
     var bloques = this.props.bloques.map(function (bloque) {
       return React.createElement(CalendarioBloque, {
         key: bloque.key,
         counter: bloque.counter,
-        colores: colores });
+        colores: colores,
+        votar: votar });
     });
 
     return React.createElement(
@@ -401,6 +368,11 @@ var Vista = React.createClass({
     });
   },
 
+  votar: function votar(counter) {
+    console.log('Thanks for voting.');
+    console.log(counter);
+  },
+
   render: function render() {
     return React.createElement(
       'section',
@@ -415,7 +387,8 @@ var Vista = React.createClass({
         key: this.state.calendario.key,
         dias: this.state.calendario.dias,
         nombre: this.state.calendario.nombre,
-        colores: this.props.colores
+        colores: this.props.colores,
+        votar: this.votar
       }),
       React.createElement(Usuarios, {
         colaboradores: this.state.calendario.usuarios

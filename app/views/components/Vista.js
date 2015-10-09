@@ -32,6 +32,11 @@ var Vista = React.createClass({
     });
   },
 
+  votar: function(counter) {
+    console.log('Thanks for voting.');
+    console.log(counter);
+  },
+
   render: function(){
     return (
       <section className="vista">
@@ -46,6 +51,7 @@ var Vista = React.createClass({
           dias={this.state.calendario.dias }
           nombre={this.state.calendario.nombre}
           colores={this.props.colores }
+          votar={this.votar}
         />
         <Usuarios
           colaboradores={this.state.calendario.usuarios}
