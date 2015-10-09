@@ -1,6 +1,8 @@
 
-var canUseDOM = require('react/lib/ExecutionEnvironment').canUseDOM
+var canUseDOM = require('exenv').canUseDOM
 var React = require('react');
+var ReactDOM = require('react-dom');
+var ReactDOMServer = require('react-dom/server');
 var Vista = require('./components/Vista');
 
 var Main = function(data) {
@@ -11,7 +13,7 @@ var Main = function(data) {
   this.render = function() {
 
     if(canUseDOM) {
-      React.render(
+      ReactDOM.render(
         <Vista
           colores={this.data.colores}
           nombre={this.data.usuario.nombre}
@@ -22,7 +24,7 @@ var Main = function(data) {
       );
     } else {
       var VistaComponent = React.createFactory(Vista);
-      return React.renderToString(
+      return ReactDOMServer.renderToString(
         VistaComponent({
           colores: this.data.colores,
           nombre: this.data.usuario.nombre,

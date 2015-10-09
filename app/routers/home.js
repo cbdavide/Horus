@@ -2,7 +2,6 @@ require('node-jsx').install();
 
 var fs = require('fs');
 
-var React = require('react/addons');
 var Main = require('../views/components');
 
 
