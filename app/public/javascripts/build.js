@@ -346,6 +346,8 @@ var PanelUsuario = require('./PanelUsuario');
 var Vista = React.createClass({
   displayName: 'Vista',
 
+  socket: null,
+
   getInitialState: function getInitialState() {
     return {
       calendario: {
@@ -353,6 +355,10 @@ var Vista = React.createClass({
         usuarios: null
       }
     };
+  },
+
+  componentDidMount: function componentDidMount() {
+    this.socket = io();
   },
 
   seleccionarHorario: function seleccionarHorario(id) {
@@ -372,6 +378,7 @@ var Vista = React.createClass({
   },
 
   votar: function votar(counter, key) {
+    //TODO: Interacción con el servidor por medio de SocketIO
     var keys = key.split('-');
     this.setState(function (anterior) {
       var temp = anterior.calendario;
@@ -381,7 +388,7 @@ var Vista = React.createClass({
         calendario: temp
       };
     });
-    console.log(counter + ' ' + key);
+    console.log(socket);
   },
 
   render: function render() {

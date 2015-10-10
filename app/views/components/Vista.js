@@ -7,6 +7,8 @@ var  PanelUsuario = require('./PanelUsuario');
 
 var Vista = React.createClass({
 
+  socket: null,
+
   getInitialState: function() {
     return {
       calendario: {
@@ -14,6 +16,10 @@ var Vista = React.createClass({
         usuarios: null
       }
     }
+  },
+
+  componentDidMount: function() {
+    this.socket = io();
   },
 
   seleccionarHorario: function(id) {
@@ -43,7 +49,7 @@ var Vista = React.createClass({
         calendario: temp
       };
     });
-    // console.log(counter+ ' '+ key);
+    console.log(socket);
   },
 
   render: function(){
