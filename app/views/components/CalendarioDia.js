@@ -13,6 +13,7 @@ var CalendarioDia = React.createClass({
       return (
         <CalendarioBloque
           key={bloque.key}
+          id={bloque.key}
           counter={bloque.counter}
           colores={colores}
           votar={votar} />

@@ -32,9 +32,18 @@ var Vista = React.createClass({
     });
   },
 
-  votar: function(counter) {
-    console.log('Thanks for voting.');
-    console.log(counter);
+  votar: function(counter, key) {
+    //TODO: Interacción con el servidor por medio de SocketIO
+    var keys = key.split('-');
+    this.setState(function(anterior){
+      var temp = anterior.calendario;
+      var n = temp.dias[keys[1]].bloques[keys[2]].counter + 1;
+      temp.dias[keys[1]].bloques[keys[2]].counter = n;
+      return {
+        calendario: temp
+      };
+    });
+    // console.log(counter+ ' '+ key);
   },
 
   render: function(){

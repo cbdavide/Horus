@@ -6,7 +6,7 @@ var CalendarioBloque = React.createClass({
   render: function() {
     return (
       <div className="calendario__bloque"
-           onClick={this.props.votar.bind(null,this.props.counter)}>
+           onClick={this.props.votar.bind(null,this.props.counter,this.props.id)}>
      </div>
     );
   }

@@ -103,7 +103,7 @@ var CalendarioBloque = React.createClass({
 
   render: function render() {
     return React.createElement("div", { className: "calendario__bloque",
-      onClick: this.props.votar.bind(null, this.props.counter) });
+      onClick: this.props.votar.bind(null, this.props.counter, this.props.id) });
   }
 
 });
@@ -127,6 +127,7 @@ var CalendarioDia = React.createClass({
     var bloques = this.props.bloques.map(function (bloque) {
       return React.createElement(CalendarioBloque, {
         key: bloque.key,
+        id: bloque.key,
         counter: bloque.counter,
         colores: colores,
         votar: votar });
@@ -370,9 +371,17 @@ var Vista = React.createClass({
     });
   },
 
-  votar: function votar(counter) {
-    console.log('Thanks for voting.');
-    console.log(counter);
+  votar: function votar(counter, key) {
+    var keys = key.split('-');
+    this.setState(function (anterior) {
+      var temp = anterior.calendario;
+      var n = temp.dias[keys[1]].bloques[keys[2]].counter + 1;
+      temp.dias[keys[1]].bloques[keys[2]].counter = n;
+      return {
+        calendario: temp
+      };
+    });
+    console.log(counter + ' ' + key);
   },
 
   render: function render() {
