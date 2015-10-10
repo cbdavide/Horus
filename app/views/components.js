@@ -15,7 +15,6 @@ var Main = function(data) {
     if(canUseDOM) {
       ReactDOM.render(
         <Vista
-          colores={this.data.colores}
           nombre={this.data.usuario.nombre}
           avatar={this.data.usuario.avatar}
           horarios={this.data.horarios}
@@ -26,7 +25,6 @@ var Main = function(data) {
       var VistaComponent = React.createFactory(Vista);
       return ReactDOMServer.renderToString(
         VistaComponent({
-          colores: this.data.colores,
           nombre: this.data.usuario.nombre,
           avatar: this.data.usuario.avatar,
           horarios: this.data.horarios

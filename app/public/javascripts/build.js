@@ -15,7 +15,6 @@ var Main = function Main(data) {
 
     if (canUseDOM) {
       ReactDOM.render(React.createElement(Vista, {
-        colores: this.data.colores,
         nombre: this.data.usuario.nombre,
         avatar: this.data.usuario.avatar,
         horarios: this.data.horarios
@@ -23,7 +22,6 @@ var Main = function Main(data) {
     } else {
       var VistaComponent = React.createFactory(Vista);
       return ReactDOMServer.renderToString(VistaComponent({
-        colores: this.data.colores,
         nombre: this.data.usuario.nombre,
         avatar: this.data.usuario.avatar,
         horarios: this.data.horarios
@@ -50,15 +48,13 @@ var Calendario = React.createClass({
 
   render: function render() {
 
-    if (this.props.colores && this.props.dias) {
-      var colores = this.props.colores;
+    if (this.props.dias) {
       var votar = this.props.votar;
       var dias = this.props.dias.map(function (dia) {
         return React.createElement(CalendarioDia, {
           key: dia.key,
           name: dia.nombre,
           bloques: dia.bloques,
-          colores: colores,
           votar: votar
         });
       });
@@ -94,15 +90,27 @@ var Calendario = React.createClass({
 module.exports = Calendario;
 
 },{"./CalendarioDia":4,"react":172}],3:[function(require,module,exports){
-"use strict";
+'use strict';
 
 var React = require('react');
 
 var CalendarioBloque = React.createClass({
-  displayName: "CalendarioBloque",
+  displayName: 'CalendarioBloque',
+
+  colores: ['#FFFFFF', '#E8F5E9', '#C8E6C9', '#A5D6A7', '#81C784', '#66BB6A', '#4CAF50', '#43A047', '#388E3C', '#2E7D32', '#1B5E20'],
+
+  color: function color() {
+
+    if (this.props.counter < this.colores.length) {
+      return this.colores[this.props.counter];
+    } else {
+      return this.colores[this.colores.length - 1];
+    }
+  },
 
   render: function render() {
-    return React.createElement("div", { className: "calendario__bloque",
+    return React.createElement('div', { className: 'calendario__bloque',
+      style: { 'backgroundColor': this.color() },
       onClick: this.props.votar.bind(null, this.props.counter, this.props.id) });
   }
 
@@ -122,14 +130,12 @@ var CalendarioDia = React.createClass({
 
   render: function render() {
 
-    var colores = this.props.colores;
     var votar = this.props.votar;
     var bloques = this.props.bloques.map(function (bloque) {
       return React.createElement(CalendarioBloque, {
         key: bloque.key,
         id: bloque.key,
         counter: bloque.counter,
-        colores: colores,
         votar: votar });
     });
 
@@ -359,6 +365,7 @@ var Vista = React.createClass({
 
   componentDidMount: function componentDidMount() {
     this.socket = io();
+    console.log(this.socket);
   },
 
   seleccionarHorario: function seleccionarHorario(id) {
@@ -405,7 +412,6 @@ var Vista = React.createClass({
         key: this.state.calendario.key,
         dias: this.state.calendario.dias,
         nombre: this.state.calendario.nombre,
-        colores: this.props.colores,
         votar: this.votar
       }),
       React.createElement(Usuarios, {

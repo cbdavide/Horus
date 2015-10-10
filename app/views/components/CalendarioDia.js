@@ -7,7 +7,6 @@ var CalendarioDia = React.createClass({
 
   render: function() {
 
-    var colores = this.props.colores;
     var votar = this.props.votar;
     var bloques = this.props.bloques.map(function(bloque){
       return (
@@ -15,7 +14,6 @@ var CalendarioDia = React.createClass({
           key={bloque.key}
           id={bloque.key}
           counter={bloque.counter}
-          colores={colores}
           votar={votar} />
       );
     });

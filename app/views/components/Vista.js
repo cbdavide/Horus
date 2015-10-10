@@ -65,7 +65,6 @@ var Vista = React.createClass({
           key={this.state.calendario.key }
           dias={this.state.calendario.dias }
           nombre={this.state.calendario.nombre}
-          colores={this.props.colores }
           votar={this.votar}
         />
         <Usuarios
