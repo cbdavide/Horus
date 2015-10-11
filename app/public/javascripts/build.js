@@ -349,6 +349,19 @@ var Calendario = require('./Calendario');
 var Usuarios = require('./Usuarios');
 var PanelUsuario = require('./PanelUsuario');
 
+var _votar = function _votar(key) {
+  var keys = key.split('-');
+  this.setState(function (anterior) {
+    var temp = anterior.calendario;
+    var n = temp.dias[keys[1]].bloques[keys[2]].counter + 1;
+    temp.dias[keys[1]].bloques[keys[2]].counter = n;
+    return {
+      calendario: temp
+    };
+  });
+  console.log('here');
+};
+
 var Vista = React.createClass({
   displayName: 'Vista',
 
@@ -365,10 +378,22 @@ var Vista = React.createClass({
 
   componentDidMount: function componentDidMount() {
     this.socket = io();
-    console.log(this.socket);
+
+    this.socket.on('grabarVoto', (function (bloqueID) {
+      console.log('He recibido un voto ' + bloqueID);
+      var v = _votar.bind(this);
+      v(bloqueID);
+    }).bind(this));
   },
 
   seleccionarHorario: function seleccionarHorario(id) {
+
+    //TODO: Leave former calendar group.
+    if (this.state.calendario.key != 'empty') {
+      this.socket.emit('calendarDisconnection', this.state.calendario.key);
+      console.log('Desconectado de ' + this.state.calendario.key);
+    }
+
     $.ajax({
 
       url: '/horario',
@@ -379,23 +404,22 @@ var Vista = React.createClass({
       success: (function (data) {
         console.log(data);
         this.setState({ calendario: data });
+        //TODO: Join actual calendar.
+        this.socket.emit('calendarConnection', this.state.calendario.key);
+        console.log('Conectado a ' + this.state.calendario.key);
       }).bind(this)
 
     });
   },
 
   votar: function votar(counter, key) {
-    //TODO: Interacción con el servidor por medio de SocketIO
-    var keys = key.split('-');
-    this.setState(function (anterior) {
-      var temp = anterior.calendario;
-      var n = temp.dias[keys[1]].bloques[keys[2]].counter + 1;
-      temp.dias[keys[1]].bloques[keys[2]].counter = n;
-      return {
-        calendario: temp
-      };
-    });
-    console.log(socket);
+    var v = _votar.bind(this);
+    v(key);
+    var data = {
+      calendarID: this.state.calendario.key,
+      bloqueID: key
+    };
+    this.socket.emit('voto', data);
   },
 
   render: function render() {

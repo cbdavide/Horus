@@ -15,7 +15,22 @@ sio.on('connection', function(socket) {
 
   socket.on('disconnect', function() {
     console.log('Usuario desconectado :x');
+  });
+
+  socket.on('calendarConnection', function(calendarID) {
+    socket.join(calendarID.toString());
+    console.log('Conectado a ' + calendarID);
   })
+
+  socket.on('calendarDisconnection', function(calendarID) {
+    socket.leave(calendarID.toString());
+    console.log('Desconectado de ' + calendarID);
+  })
+
+  socket.on('voto', function(data) {
+    console.log('Se ha registrado un voto para ' + data.bloqueID);
+    socket.broadcast.to(data.calendarID.toString()).emit('grabarVoto', data.bloqueID);
+  });
 
 });
 
