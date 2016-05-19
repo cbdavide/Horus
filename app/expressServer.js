@@ -1,5 +1,6 @@
 
 var express = require('express');
+var bodyParser = require('body-parser');
 var routers = require('./routers');
 
 
@@ -8,6 +9,8 @@ var expressServer = (function() {
   var server = express();
 
   server.use('/', express.static(__dirname + '/public'));
+  server.use(bodyParser.urlencoded({extended: true}));
+  server.use(bodyParser.json());
 
   for(var i in routers) {
 
