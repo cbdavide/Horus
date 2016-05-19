@@ -1,7 +1,6 @@
 
 var express = require('express');
 var routers = require('./routers');
-var bodyParser = require('body-parser');
 
 
 var expressServer = (function() {
@@ -9,10 +8,6 @@ var expressServer = (function() {
   var server = express();
 
   server.use('/', express.static(__dirname + '/public'));
-  server.use(bodyParser.json());
-
-  server.set('views','./app/views/templates');
-  server.set('view engine', 'ejs');
 
   for(var i in routers) {
 

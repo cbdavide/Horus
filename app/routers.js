@@ -1,9 +1,4 @@
 
-var routers = [
-
-  require('./routers/home'),
-  require('./routers/horario')
-
-]
+var routers = [];
 
 module.exports = routers;
