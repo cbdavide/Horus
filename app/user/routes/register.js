@@ -1,3 +1,4 @@
+var model = require('../model');
 
 module.exports = {
 
@@ -5,7 +6,13 @@ module.exports = {
     method: 'post',
 
     callback: (req, res) => {
-        console.dir(req.body);
+        model.insert(req.body)
+            .then((data) => {
+                console.dir(data);
+            })
+            .catch((err) => {
+                console.dir(err);
+            });
         res.end('Thanks');
     }
 };
