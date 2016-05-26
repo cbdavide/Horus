@@ -12,6 +12,9 @@ var expressServer = (function() {
   server.use(bodyParser.urlencoded({extended: true}));
   server.use(bodyParser.json());
 
+  server.set('view engine', 'ejs');
+  server.set('views', './app/view');
+
   for(var i in routers) {
 
     var router = routers[i];
