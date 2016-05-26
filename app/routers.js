@@ -1,6 +1,7 @@
 
 var routers = [
-    require('./user/routes/register'),
+    require('./user/routes/signUp').post,
+    require('./user/routes/signUp').get,
     require('./user/routes/consult')
 ];
 
