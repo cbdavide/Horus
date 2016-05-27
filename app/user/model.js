@@ -10,7 +10,11 @@ module.exports = {
 
     findUser: (uname) => {
         return db.collection('users')
-            .findOne({username: uname});
+            .findOne({username: uname}, {
+                _id: false,
+                username: false,
+                password: false
+            });
     }
 
 }

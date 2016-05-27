@@ -9,12 +9,14 @@ module.exports = {
         callback: (req, res) => {
             model.insert(req.body)
                 .then((data) => {
-                    console.dir(data);
+                    // console.dir(data);
+                    res.end('The user was successfully inserted');
                 })
                 .catch((err) => {
+                    //TODO: Handle 503 error
                     console.dir(err);
+                    res.end('503');
                 });
-                res.end('Thanks');
         }
     },
 
