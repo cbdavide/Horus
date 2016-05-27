@@ -1,11 +1,21 @@
+var model = require('../model');
 
 module.exports = {
 
-    path: '/user/:name',
+    path: '/user/:username',
     method: 'get',
 
     callback: (req, res) => {
-        res.json({name: req.params.name});
+        model.findUser(req.params.username)
+        .then((doc) => {
+            if(doc)
+                res.render('user/user', doc);
+            else
+                res.send('Not found');
+        })
+        .catch((err) => {
+            console.log(err);
+        });
     }
 
 }
