@@ -1,3 +1,4 @@
+'use strict';
 /**
     Connect to a Mongo data base
     This module has the config need it to make the connection
@@ -9,7 +10,7 @@
     //TODO: Implement a function to close the connection
 
 */
-"use strict"
+
 var MongoClient = require('mongodb').MongoClient;
 
 var config = {

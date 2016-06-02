@@ -1,8 +1,10 @@
 'use strict';
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var middlewares = require('./middleware');
 var routers = require('./routers');
+var wg = require('./util');
 
 var expressServer = (function() {
 
@@ -21,7 +23,11 @@ var expressServer = (function() {
 
     //Loading the routers
     for(let router of routers)
-        server[router.method](router.path, router.callback);
+        server[router.method](router.path, wg(router.callback));
+
+    server.use((err, req, res, next) => {
+	res.end('Opps! something failed :c');
+    });
 
     return {
         getServer: function() {

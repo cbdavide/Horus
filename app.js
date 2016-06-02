@@ -1,4 +1,4 @@
-
+"use strict";
 var http = require('http');
 var expressServer = require('./app/expressServer');
 var db = require('./db.js');
