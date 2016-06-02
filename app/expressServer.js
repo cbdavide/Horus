@@ -26,7 +26,16 @@ var expressServer = (function() {
         server[router.method](router.path, wg(router.callback));
 
     server.use((err, req, res, next) => {
-	res.end('Opps! something failed :c');
+	console.dir(err);
+
+	if(err.code === 404)
+	    res.status(404).end('404 Not found');
+	else
+	    next(err);
+    });
+
+    server.use((err, req, res, nex) => {
+	res.end('Ops! somtheing went wrong.');
     });
 
     return {

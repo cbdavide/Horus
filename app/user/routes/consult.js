@@ -11,8 +11,13 @@ module.exports = {
 
 	let user = yield model.findUser(req.params.username);
 
-	res.render('user/user', user);
-
+	if(user){
+	    res.render('user/user', user);
+	} else {
+	    let err = new Error("Not found");
+	    err.code = 404;
+	    next(err);
+	}
     }
 
 }
