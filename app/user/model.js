@@ -12,9 +12,17 @@ module.exports = {
 	return db.collection('users')
             .findOne({username: uname}, {
                 _id: false,
-                username: false,
-                password: false
+                name: true,
+		lastname: true,
+		email: true
             });
-    }
+    },
 
-}
+    findUserP: function(uname) {
+	return db.collection('users')
+	    .findOne({username: uname}, {
+		_id: false,
+		password: true
+	    });
+    }
+};
